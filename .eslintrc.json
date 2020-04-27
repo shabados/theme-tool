@@ -1,0 +1,43 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+    "rules": {
+    "array-bracket-spacing": [
+        "error",
+        "always"
+    ],
+    "arrow-parens": [
+        "error",
+        "as-needed",
+        {
+        "requireForBlockBody": false
+        }
+    ],
+    "react/jsx-filename-extension": 0,
+    "space-in-parens": [
+        "error",
+        "always",
+        {
+          "exceptions": [
+            "empty"
+          ]
+        }
+    ],
+    "semi": [
+        "error",
+        "never"
+      ],
+      "func-names": [
+        "error",
+        "never"
+      ]
+    }
+}
