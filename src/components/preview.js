@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import classNames from 'classnames'
 import { string, bool, oneOfType } from 'prop-types'
 
 import { partitionLine, classifyWords } from '../lib/utils'
+import { SettingsContext } from '../lib/contexts'
 
 import './preview.css'
 
@@ -29,6 +30,11 @@ const Overlay = ( {
   hindiTransliteration,
   urduTransliteration,
 } ) => {
+  const [ settings ] = useContext( SettingsContext )
+
+  larivaar = settings.larivaarGurbani
+  larivaarAssist = settings.larivaarAssist
+
   const line = partitionLine( gurmukhi )
     .map( ( line, lineIndex ) => (
       <span key={lineIndex}>
@@ -37,16 +43,16 @@ const Overlay = ( {
     ) )
 
   const translations = [
-    [ 'english', englishTranslation ],
-    [ 'punjabi', punjabiTranslation ],
-    [ 'spanish', spanishTranslation ],
-  ]
+    [ 'english', englishTranslation, settings.englishTranslation ],
+    [ 'punjabi', punjabiTranslation, settings.punjabiTranslation ],
+    [ 'spanish', spanishTranslation, settings.spanishTranslation ],
+  ].filter( ( [ , , enabled ] ) => enabled )
 
   const transliterations = [
-    [ 'english', englishTransliteration ],
-    [ 'hindi', hindiTransliteration ],
-    [ 'urdu', urduTransliteration ],
-  ]
+    [ 'english', englishTransliteration, settings.englishTransliteration ],
+    [ 'hindi', hindiTransliteration, settings.hindiTransliteration ],
+    [ 'urdu', urduTransliteration, settings.urduTransliteration ],
+  ].filter( ( [ , , enabled ] ) => enabled )
 
   return (
     <div className={classNames( className, {
@@ -60,7 +66,7 @@ const Overlay = ( {
         </span>
       </p>
 
-      {translations.filter( isNonEmptyString ).map( ( [ name, translation ] ) => (
+      {translations.map( ( [ name, translation ] ) => (
         <p key={`${name}-${translation}`} className={classNames( name, 'translation' )}>
           <span className="text">
             {translation}
@@ -68,7 +74,7 @@ const Overlay = ( {
         </p>
       ) )}
 
-      {transliterations.filter( isNonEmptyString ).map( ( [ name, transliteration ] ) => (
+      {transliterations.map( ( [ name, transliteration ] ) => (
         <p key={`${name}-${transliteration}`} className={classNames( name, 'transliteration' )}>
           <span className="text">
             {classifyWords( transliteration, true ).map(
