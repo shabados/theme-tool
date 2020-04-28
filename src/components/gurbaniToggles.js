@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import {
   Switch,
   FormControl,
   FormControlLabel,
 } from '@material-ui/core'
 
+import { SettingsContext } from '../lib/contexts'
+
 const BUTTONS = [
+  [ 'larivaarGurbani', 'Larivaar Gurbani' ],
   [ 'larivaarAssist', 'Larivaar Assist' ],
-  [ 'larivaarGurbani', 'Larivaar Assist' ],
   [ 'englishTranslation', 'English Translation' ],
   [ 'spanishTranslation', 'Spanish Translation' ],
   [ 'punjabiTranslation', 'Punjabi Translation' ],
@@ -17,11 +19,10 @@ const BUTTONS = [
 ]
 
 const GurbaniSwitchToggle = () => {
-  const [ state, setState ] = useState( [] )
+  const [ settings, setSettings ] = useContext( SettingsContext )
 
   const handleChange = event => {
-    setState( { ...state, [event.target.name]: event.target.checked } )
-    // need to update the app for lines
+    setSettings( { ...settings, [event.target.name]: event.target.checked } )
   }
 
   return (
@@ -31,7 +32,7 @@ const GurbaniSwitchToggle = () => {
           control={(
             <Switch
               name={key}
-              checked={state.key}
+              checked={settings[key] || false}
               onChange={handleChange}
               color="primary"
             />
