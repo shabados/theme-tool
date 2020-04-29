@@ -7,8 +7,6 @@ import { SettingsContext } from '../lib/contexts'
 
 import './preview.css'
 
-const isNonEmptyString = ( [ , arg ] ) => typeof arg === 'string' && !!arg
-
 /**
  * Overlay Line Component.
  * Renders the various aspects of a single line.

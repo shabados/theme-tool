@@ -7,18 +7,15 @@ let GENERATED_FILE = null
  * Appends css attribute
  * @returns array: data that can be converted to css file.
  */
-const getData = () => {
-  const data = []
-  data.push( ':root {\n' )
-  data.push( '/* Generated using ShabadOS Theme Generator */\n' )
-  Object.keys( TemplateStyleSheet ).forEach( key => {
-    if ( localStorage[key] !== 'none' && localStorage[key] !== 'inherit' ) {
-      data.push( `${key}:${localStorage[key]};\n` )
-    }
-  } )
-  data.push( '}' )
-  return data
-}
+const getData = () => [
+  ':root{\n',
+  '/* Generated using ShabadOS Theme Generator */\n',
+  ...Object.keys( TemplateStyleSheet )
+    .filter( key => localStorage[key] !== 'none' )
+    .filter( key => localStorage[key] !== 'inherit' )
+    .map( key => ( `${key}:${localStorage[key]}\n` ) ),
+  '}',
+]
 
 /**
  * Converts the data[] into a blob for storage
