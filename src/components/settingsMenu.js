@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 
 import GurbaniSwitchToggle from './gurbaniToggles'
+import LayoutEditor from './layoutEditor'
 
 import './settingsMenu.css'
 
@@ -79,7 +80,7 @@ const EditorPanel = () => {
         <GurbaniSwitchToggle />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Overlay Layout Options
+        <LayoutEditor />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Overlay Background Options
