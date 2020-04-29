@@ -1,15 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SplitPane from 'react-split-pane'
 
 import Overlay from './components/preview'
 import EditorPanel from './components/settingsMenu'
 // import onClike from './components/generate'
 
-import TemplateStyleSheet from './lib/template-stylesheet.json'
 
 import { SettingsContext } from './lib/contexts'
-import theme from './lib/template.css'
+import { loadCss, loadStorage } from './lib/utils'
 
 import './App.css'
 
@@ -23,15 +22,9 @@ import {
   TRANSLATION_SPANSISH,
 } from './lib/mool-mantar'
 
-const larivaarAssist = true
-const larivaarGurbani = true
+loadStorage()
+loadCss()
 
-// Write the stylesheet to localstorage
-if ( localStorage.length < 37 ) {
-  Object.keys( TemplateStyleSheet ).forEach( key => {
-    window.localStorage.setItem( key, TemplateStyleSheet[key] )
-  } )
-}
 
 const handleChange = v => {
   document.documentElement.style.setProperty( '--overlay-vertical-padding', `${v}px` )

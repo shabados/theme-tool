@@ -2,6 +2,8 @@
  * https://github.com/ShabadOS/desktop/blob/dev/app/frontend/src/lib/utils.js
  */
 
+import TemplateStyleSheet from './template-stylesheet.json'
+
 // Detect vishraams/pauses with characters
 export const PAUSE_CHARS = {
   heavy: ';',
@@ -52,3 +54,19 @@ export const partitionLine = ( line, strip = true ) => classifyWords( line, stri
     // If it's a heavy pause, start a new array after it for the next words
     return type === 'heavy' ? [ ...nextWords, [] ] : nextWords
   }, [ [] ] )
+
+// Write template Stylesheet to localstorage
+export const loadStorage = () => {
+  if ( localStorage.length < 37 ) {
+    Object.keys( TemplateStyleSheet )
+      .forEach( key => ( window.localStorage.setItem( key, TemplateStyleSheet[key] ) ) )
+  }
+}
+
+// Load stylesheet from local storage
+export const loadCss = () => {
+  Object.keys( TemplateStyleSheet )
+    .forEach( key => (
+      document.documentElement.style.setProperty( key, localStorage[key] )
+    ) )
+}
