@@ -11,6 +11,7 @@ import {
 
 import GurbaniSwitchToggle from './gurbaniToggles'
 import LayoutEditor from './layoutEditor'
+import BackgroundEditor from './backgroundEditor'
 
 import './settingsMenu.css'
 
@@ -58,15 +59,15 @@ const EditorPanel = () => {
   }
 
   return (
-    <div className="Editor">
+    <div className="settings-menu">
       <AppBar position="static" color="default">
         <Tabs
-          className="EditorTabs"
+          className="editorTabs"
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          variant="centered"
+          variant="scrollable"
           scrollButtons="auto"
         >
           <Tab label="Line Options" {...tabPanelProps( 0 )} />
@@ -83,7 +84,7 @@ const EditorPanel = () => {
         <LayoutEditor />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Overlay Background Options
+        <BackgroundEditor />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Overlay Font Options
