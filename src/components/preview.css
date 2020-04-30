@@ -1,6 +1,6 @@
 @import url("../assets/fonts/noto-sans/index.css");
 @import url("../assets/fonts/OpenGurbaniAkhar/index.css");
-@import url("../assets/fonts/OpenAnmolUni/index.css")
+@import url("../assets/fonts/OpenAnmolUni/index.css");
 
 .app {
     justify-content: var(--overlay-flex-justification);
