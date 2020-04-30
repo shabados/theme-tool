@@ -29,6 +29,7 @@ const GurbaniSwitchToggle = () => {
     <FormControl component="fieldset">
       {BUTTONS.map( ( [ key, name ] ) => (
         <FormControlLabel
+          key={key}
           control={(
             <Switch
               name={key}
