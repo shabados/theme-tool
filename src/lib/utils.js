@@ -57,7 +57,7 @@ export const partitionLine = ( line, strip = true ) => classifyWords( line, stri
 
 // Write template Stylesheet to localstorage
 export const loadStorage = () => {
-  if ( localStorage.length < 37 ) {
+  if ( localStorage.length <= 36 ) {
     Object.keys( TemplateStyleSheet )
       .forEach( key => ( window.localStorage.setItem( key, TemplateStyleSheet[key] ) ) )
   }
