@@ -1,66 +1,120 @@
 /* eslint-disable object-curly-newline */
-import React, { useContext } from 'react'
-import './layoutEditor.css'
+import React from 'react'
 
-import { Typography } from '@material-ui/core'
+import { Typography, Grid } from '@material-ui/core'
 import { Dropdown, Slider } from './SettingComponent'
 import { OPTIONS } from '../lib/options'
-import { SettingsContext } from '../lib/contexts'
 
-const SLIDER = [
-  OPTIONS.verticalPadding,
-  OPTIONS.horizontalPadding,
-  OPTIONS.windowVerticalPadding,
-  OPTIONS.windowHorizontalPadding,
-  OPTIONS.textVerticalPadding,
-  OPTIONS.textHorizontalPadding,
-]
+import './layoutEditor.css'
 
-const DROPDOWN = [
-  OPTIONS.flexJustification,
-  OPTIONS.windowDisplay,
-  OPTIONS.textAlign,
-]
-
-const LayoutEditor = () => {
-  const [ settings, setSettings ] = useContext( SettingsContext )
-
-  return (
-    <div>
-      {DROPDOWN.map( ( { name, values, storageKey } ) => (
-        <div>
-          <Typography>{name}</Typography>
-          <Dropdown
-            value={settings[name] || window.localStorage.getItem( storageKey )}
-            values={values}
-            onChange={event => {
-              setSettings( { ...settings, [name]: event.target.value } )
-              document.documentElement.style.setProperty( storageKey, event.target.value )
-              window.localStorage.setItem( storageKey, event.target.value )
-            }}
-          />
-        </div>
-      ) )}
-
-      {SLIDER.map( ( { name, min, max, step, storageKey, units } ) => (
-        <div>
-          <Typography>{name}</Typography>
-          <Slider
-            value={settings[name] || window.localStorage.getItem( storageKey ).split( units )[0]}
-            min={min}
-            max={max}
-            step={step}
-            onChange={( _event, newValue ) => {
-              setSettings( { ...settings, [name]: newValue } )
-              document.documentElement.style.setProperty( storageKey, `${newValue}${units}` )
-              window.localStorage.setItem( storageKey, `${newValue}${units}` )
-            }}
-          />
-        </div>
-      ) )}
-
-    </div>
-  )
-}
+const LayoutEditor = () => (
+  <Grid
+    container
+    direction="column"
+    justify="flex-start"
+    alignItems="flex-start"
+    spacing={5}
+  >
+    <Grid item>
+      <Typography align="center">Overlay</Typography>
+      <div className="someOption">
+        <Typography className="someOptionName">Justification</Typography>
+        <Dropdown
+          name={OPTIONS.flexJustification.name}
+          storageKey={OPTIONS.flexJustification.storageKey}
+          values={OPTIONS.flexJustification.values}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Vertical Padding</Typography>
+        <Slider
+          name={OPTIONS.verticalPadding.name}
+          min={OPTIONS.verticalPadding.min}
+          max={OPTIONS.verticalPadding.max}
+          step={OPTIONS.verticalPadding.step}
+          storageKey={OPTIONS.verticalPadding.storageKey}
+          units={OPTIONS.verticalPadding.units}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Horizontal Padding</Typography>
+        <Slider
+          name={OPTIONS.horizontalPadding.name}
+          min={OPTIONS.horizontalPadding.min}
+          max={OPTIONS.horizontalPadding.max}
+          step={OPTIONS.horizontalPadding.step}
+          storageKey={OPTIONS.horizontalPadding.storageKey}
+          units={OPTIONS.horizontalPadding.units}
+        />
+      </div>
+    </Grid>
+    <Grid item>
+      <Typography align="center">Window</Typography>
+      <div className="someOption">
+        <Typography className="someOptionName">Justification</Typography>
+        <Dropdown
+          name={OPTIONS.windowDisplay.name}
+          storageKey={OPTIONS.windowDisplay.storageKey}
+          values={OPTIONS.windowDisplay.values}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Vertical Padding</Typography>
+        <Slider
+          name={OPTIONS.windowVerticalPadding.name}
+          min={OPTIONS.windowVerticalPadding.min}
+          max={OPTIONS.windowVerticalPadding.max}
+          step={OPTIONS.windowVerticalPadding.step}
+          storageKey={OPTIONS.windowVerticalPadding.storageKey}
+          units={OPTIONS.windowVerticalPadding.units}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Horizontal Padding</Typography>
+        <Slider
+          name={OPTIONS.windowHorizontalPadding.name}
+          min={OPTIONS.windowHorizontalPadding.min}
+          max={OPTIONS.windowHorizontalPadding.max}
+          step={OPTIONS.windowHorizontalPadding.step}
+          storageKey={OPTIONS.windowHorizontalPadding.storageKey}
+          units={OPTIONS.windowHorizontalPadding.units}
+        />
+      </div>
+    </Grid>
+    <Grid item>
+      <Typography align="center">Text</Typography>
+      <div className="someOption">
+        <Typography className="someOptionName">Align</Typography>
+        <Dropdown
+          name={OPTIONS.textAlign.name}
+          storageKey={OPTIONS.textAlign.storageKey}
+          values={OPTIONS.textAlign.values}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Vertical Padding</Typography>
+        <Slider
+          name={OPTIONS.textVerticalPadding.name}
+          min={OPTIONS.textVerticalPadding.min}
+          max={OPTIONS.textVerticalPadding.max}
+          step={OPTIONS.textVerticalPadding.step}
+          storageKey={OPTIONS.textVerticalPadding.storageKey}
+          units={OPTIONS.textVerticalPadding.units}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Horizontal Padding</Typography>
+        <Slider
+          name={OPTIONS.textHorizontalPadding.name}
+          min={OPTIONS.textHorizontalPadding.min}
+          max={OPTIONS.textHorizontalPadding.max}
+          step={OPTIONS.textHorizontalPadding.step}
+          storageKey={OPTIONS.textHorizontalPadding.storageKey}
+          units={OPTIONS.textHorizontalPadding.units}
+        />
+      </div>
+    </Grid>
+  </Grid>
+)
 
 export default LayoutEditor

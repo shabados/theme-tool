@@ -1,7 +1,21 @@
-.MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiInput-input{
+/* .MuiSelect-root.MuiSelect-select.MuiSelect-selectMenu.MuiInputBase-input.MuiInput-input{
    width: 120px;
+} */
+
+/* .MuiSlider-root.MuiSlider-colorPrimary.slider{
+   width: 300px;
+} */
+
+.someOption {
+   display: flex;
+   flex-direction: row;
 }
 
-.MuiSlider-root.MuiSlider-colorPrimary.slider{
-   width: 300px;
+.someOptionName{
+   width: 100% ;
+   padding-right:10px;
+}
+
+.MuiGrid-item {
+   width: 100%;
 }
