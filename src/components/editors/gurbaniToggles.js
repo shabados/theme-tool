@@ -5,7 +5,7 @@ import {
   FormControlLabel,
 } from '@material-ui/core'
 
-import { SettingsContext } from '../lib/contexts'
+import { SettingsContext } from '../../lib/contexts'
 
 const BUTTONS = [
   [ 'larivaarGurbani', 'Larivaar Gurbani' ],
