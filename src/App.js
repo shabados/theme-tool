@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import SplitPane from 'react-split-pane'
 
 import Overlay from './components/preview'
@@ -25,16 +25,6 @@ import {
 loadStorage()
 loadCss()
 
-
-const handleChange = v => {
-  document.documentElement.style.setProperty( '--overlay-vertical-padding', `${v}px` )
-  window.localStorage.setItem( '--overlay-vertical-padding', `${v}px` )
-}
-
-
-// const handleChange = v => {
-//   document.documentElement.style.setProperty( '--overlay-vertical-padding', `${v}px` )
-// }
 const App = () => {
   const settingsState = useState( {} )
 
@@ -43,7 +33,7 @@ const App = () => {
 
 
       <div className="app">
-        <SplitPane split="horizontal" minSize="200" primary="second">
+        <SplitPane split="vertical" minSize={400} primary="second" allowResize={false}>
           <div className="overlay">
             <Overlay
               {...( {
