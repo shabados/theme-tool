@@ -1,0 +1,12 @@
+.MuiGrid-item {
+   width: 100%;
+}
+
+.someOption{
+   display: flex;
+}
+
+.someOptionName{
+   width: 100%;
+   padding-right:10px;
+}

@@ -2,8 +2,8 @@
 import React from 'react'
 
 import { Typography, Grid } from '@material-ui/core'
-import { Dropdown, Slider } from './SettingComponent'
-import { OPTIONS } from '../lib/options'
+import { Dropdown, Slider } from '../SettingComponent'
+import { OPTIONS } from '../../lib/options'
 
 import './layoutEditor.css'
 
@@ -23,6 +23,25 @@ const LayoutEditor = () => (
           name={OPTIONS.flexJustification.name}
           storageKey={OPTIONS.flexJustification.storageKey}
           values={OPTIONS.flexJustification.values}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Height</Typography>
+        <Dropdown
+          name={OPTIONS.height.name}
+          storageKey={OPTIONS.height.storageKey}
+          values={OPTIONS.height.values}
+        />
+      </div>
+      <div className="someOption">
+        <Typography className="someOptionName">Width</Typography>
+        <Slider
+          name={OPTIONS.width.name}
+          min={OPTIONS.width.min}
+          max={OPTIONS.width.max}
+          step={OPTIONS.width.step}
+          storageKey={OPTIONS.width.storageKey}
+          units={OPTIONS.width.units}
         />
       </div>
       <div className="someOption">
