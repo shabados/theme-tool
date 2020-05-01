@@ -9,11 +9,12 @@ import {
   Typography,
 } from '@material-ui/core'
 
-import GurbaniSwitchToggle from './gurbaniToggles'
-import LayoutEditor from './layoutEditor'
-import BackgroundEditor from './backgroundEditor'
-
-import './settingsMenu.css'
+import GurbaniSwitchToggle from './editors/gurbaniToggles'
+import LayoutEditor from './editors/layoutEditor'
+import BackgroundEditor from './editors/backgroundEditor'
+import FontEditor from './editors/fontEditor'
+import VishraamEditor from './editors/vishraamEditor'
+import ExportEditor from './editors/exportEditor'
 
 // WIP: need to organize code
 
@@ -70,11 +71,12 @@ const EditorPanel = () => {
           variant="scrollable"
           scrollButtons="auto"
         >
-          <Tab label="Line Options" {...tabPanelProps( 0 )} />
+          <Tab label="Preview" {...tabPanelProps( 0 )} />
           <Tab label="Layout" {...tabPanelProps( 1 )} />
           <Tab label="Background" {...tabPanelProps( 2 )} />
           <Tab label="Font" {...tabPanelProps( 3 )} />
           <Tab label="Vishraam Colors" {...tabPanelProps( 4 )} />
+          <Tab label="Export" {...tabPanelProps( 5 )} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -87,10 +89,13 @@ const EditorPanel = () => {
         <BackgroundEditor />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Overlay Font Options
+        <FontEditor />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Overlay Vishraam Color Options
+        <VishraamEditor />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <ExportEditor />
       </TabPanel>
     </div>
   )
