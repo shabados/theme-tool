@@ -1,8 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable object-curly-newline */
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { string, func, any, arrayOf, number, bool } from 'prop-types'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEyeDropper } from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames'
 
 import {
@@ -11,6 +13,7 @@ import {
   MenuItem,
   Slider as MaterialSlider,
   Button as MaterialButton,
+  Popover,
 } from '@material-ui/core'
 
 import { SketchPicker } from 'react-color'
@@ -153,6 +156,53 @@ export const ColorPicker = ( { name, storageKey, ...props } ) => {
 ColorPicker.propTypes = {
   name: string.isRequired,
   storageKey: string.isRequired,
+}
+
+export const PopoverIcon = ( { icon, component, ...props } ) => {
+  const [ anchorEl, setAnchorEl ] = useState( null )
+  const open = Boolean( anchorEl )
+  const id = open ? 'simple-popover' : undefined
+
+  const handleClick = event => {
+    setAnchorEl( event.currentTarget )
+  }
+
+  const handleClose = () => {
+    setAnchorEl( null )
+  }
+
+  return (
+    <div>
+      <FontAwesomeIcon
+        icon={icon}
+        onClick={handleClick}
+        size="lg"
+        {...props}
+      />
+      <Popover
+        id={id}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        {...props}
+      >
+        {component}
+      </Popover>
+    </div>
+  )
+}
+
+PopoverIcon.propTypes = {
+  icon: any.isRequired,
+  component: any.isRequired,
 }
 
 const typeComponents = {
