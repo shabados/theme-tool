@@ -54,3 +54,7 @@
 .Resizer.disabled:hover {
     border-color: transparent;
 }
+
+.Pane2 {
+    background-color: rgba(211, 209, 209, 0.301);
+}
