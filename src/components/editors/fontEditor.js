@@ -23,6 +23,7 @@ const FONT_EDITOR_OPTIONS = [
 ]
 
 const FontEditor = () => (
+
   <Grid
     container
     direction="column"
@@ -30,11 +31,17 @@ const FontEditor = () => (
     alignItems="flex-start"
     spacing={5}
   >
+
     {FONT_EDITOR_OPTIONS.map( opt => (
+
       <Grid item>
+
         <Typography key={opt.name} align="center">{opt.name}</Typography>
+
         <div className="someOption">
+
           <Typography className="someOptionName">{opt.color.name}</Typography>
+
           <PopoverIcon
             icon={opt.color.icon}
             component={(
@@ -44,9 +51,13 @@ const FontEditor = () => (
               />
               )}
           />
+
         </div>
+
         <div className="someOption">
+
           <Typography className="someOptionName">{opt.size.name}</Typography>
+
           <Slider
             name={opt.size.name}
             min={opt.size.min}
@@ -55,9 +66,13 @@ const FontEditor = () => (
             storageKey={opt.size.storageKey}
             units={opt.size.units}
           />
+
         </div>
+
         <div className="someOption">
+
           <Typography className="someOptionName">{opt.larivaar.name}</Typography>
+
           <PopoverIcon
             icon={opt.larivaar.icon}
             component={(
@@ -67,9 +82,13 @@ const FontEditor = () => (
               />
               )}
           />
+
         </div>
+
         <div className="someOption">
+
           <Typography className="someOptionName">{opt.drop.name}</Typography>
+
           <PopoverIcon
             icon={opt.drop.icon}
             component={(
@@ -79,10 +98,13 @@ const FontEditor = () => (
               />
               )}
           />
+
         </div>
+
       </Grid>
     ) ) }
   </Grid>
+
 )
 
 export default FontEditor

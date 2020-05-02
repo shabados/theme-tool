@@ -12,20 +12,27 @@ const VISHRAAM_EDITOR_OPTIONS = [
 ]
 
 const VishraamEditor = () => (
+
   VISHRAAM_EDITOR_OPTIONS.map( opt => (
+
     <div key={opt.color.name} className="someOption">
+
       <Typography className="someOptionName">{opt.color.name}</Typography>
+
       <PopoverIcon
         icon={opt.color.icon}
         component={(
+
           <ColorPicker
             name={opt.color.name}
             storageKey={opt.color.storageKey}
           />
               )}
       />
+
     </div>
   ) )
+
 )
 
 export default VishraamEditor
