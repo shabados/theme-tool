@@ -19,8 +19,6 @@ import './preview.css'
 const Overlay = ( {
   className,
   gurmukhi,
-  larivaarGurbani: larivaar,
-  larivaarAssist,
   punjabiTranslation,
   englishTranslation,
   spanishTranslation,
@@ -29,10 +27,6 @@ const Overlay = ( {
   urduTransliteration,
 } ) => {
   const [ settings ] = useContext( SettingsContext )
-
-  larivaar = settings.larivaarGurbani
-  larivaarAssist = settings.larivaarAssist
-
   const line = partitionLine( gurmukhi )
     .map( ( line, lineIndex ) => (
       <span key={lineIndex}>
@@ -53,36 +47,45 @@ const Overlay = ( {
   ].filter( ( [ , , enabled ] ) => enabled )
 
   return (
+
     <div className={classNames( className, {
-      larivaar,
-      assist: larivaar && larivaarAssist,
+      larivaar: settings.larivaarGurbani,
+      assist: settings.larivaarGurbani && settings.larivaarAssist,
     }, 'overlay-line' )}
     >
+
       <p className="gurmukhi">
+
         <span className="text">
           {line}
         </span>
+
       </p>
 
       {translations.map( ( [ name, translation ] ) => (
         <p key={`${name}-${translation}`} className={classNames( name, 'translation' )}>
+
           <span className="text">
             {translation}
           </span>
+
         </p>
       ) )}
 
       {transliterations.map( ( [ name, transliteration ] ) => (
         <p key={`${name}-${transliteration}`} className={classNames( name, 'transliteration' )}>
+
           <span className="text">
             {classifyWords( transliteration, true ).map(
               ( { word, type }, i ) => <span key={`${word}-${type}-${i}`} className={classNames( type, 'word' )}>{word}</span>,
             )}
           </span>
+
         </p>
       ) )}
 
     </div>
+
   )
 }
 
@@ -95,14 +98,10 @@ Overlay.propTypes = {
   englishTransliteration: oneOfType( [ string, bool ] ),
   hindiTransliteration: oneOfType( [ string, bool ] ),
   urduTransliteration: oneOfType( [ string, bool ] ),
-  larivaarGurbani: bool,
-  larivaarAssist: bool,
 }
 
 Overlay.defaultProps = {
   className: null,
-  larivaarAssist: false,
-  larivaarGurbani: false,
   englishTranslation: false,
   spanishTranslation: false,
   punjabiTranslation: false,

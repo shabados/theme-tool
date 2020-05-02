@@ -21,10 +21,15 @@ const BackgroundEditor = () => (
     spacing={5}
   >
     {BACKGROUND_EDITOR_OPTIONS.map( opt => (
+
       <Grid item>
+
         <Typography key={opt.name} align="center">{opt.name}</Typography>
+
         <div className="someOption">
+
           <Typography className="someOptionName">{opt.color.name}</Typography>
+
           <PopoverIcon
             icon={opt.color.icon}
             component={(
@@ -34,17 +39,25 @@ const BackgroundEditor = () => (
               />
               )}
           />
+
         </div>
+
         <div className="someOption">
+
           <Typography className="someOptionName">{opt.size.name}</Typography>
+
           <Dropdown
             name={opt.size.name}
             values={opt.size.values}
             storageKey={opt.size.storageKey}
           />
+
         </div>
+
       </Grid>
+
     ) ) }
+
   </Grid>
 )
 

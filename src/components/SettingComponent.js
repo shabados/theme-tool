@@ -1,19 +1,23 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable object-curly-newline */
 import React, { useContext, useState } from 'react'
-import { string, func, any, arrayOf, number, bool } from 'prop-types'
+import classNames from 'classnames'
+import {
+  any,
+  bool,
+  func,
+  number,
+  string,
+  arrayOf,
+} from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEyeDropper } from '@fortawesome/free-solid-svg-icons'
-import classNames from 'classnames'
 
 import {
-  Switch,
   Select,
+  Switch,
+  Popover,
   MenuItem,
   Slider as MaterialSlider,
   Button as MaterialButton,
-  Popover,
 } from '@material-ui/core'
 
 import { SketchPicker } from 'react-color'
@@ -103,9 +107,11 @@ export const Dropdown = ( { name, storageKey, values, ...props } ) => {
       }}
       {...props}
     >
+
       {values.map(
         ( { name, value } ) => <MenuItem key={value} value={value}>{name || value}</MenuItem>,
       )}
+
     </Select>
   )
 }
@@ -173,12 +179,14 @@ export const PopoverIcon = ( { icon, component, ...props } ) => {
 
   return (
     <div>
+
       <FontAwesomeIcon
         icon={icon}
         onClick={handleClick}
         size="lg"
         {...props}
       />
+
       <Popover
         id={id}
         anchorEl={anchorEl}
@@ -194,8 +202,11 @@ export const PopoverIcon = ( { icon, component, ...props } ) => {
         }}
         {...props}
       >
+
         {component}
+
       </Popover>
+      
     </div>
   )
 }

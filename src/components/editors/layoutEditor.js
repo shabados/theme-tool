@@ -1,4 +1,3 @@
-/* eslint-disable object-curly-newline */
 import React from 'react'
 
 import { Typography, Grid } from '@material-ui/core'
@@ -8,6 +7,7 @@ import { OPTIONS } from '../../lib/options'
 import './layoutEditor.css'
 
 const LayoutEditor = () => (
+
   <Grid
     container
     direction="column"
@@ -15,26 +15,39 @@ const LayoutEditor = () => (
     alignItems="flex-start"
     spacing={5}
   >
+
     <Grid item>
+
       <Typography align="center">Overlay</Typography>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Justification</Typography>
+
         <Dropdown
           name={OPTIONS.flexJustification.name}
           storageKey={OPTIONS.flexJustification.storageKey}
           values={OPTIONS.flexJustification.values}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Height</Typography>
+
         <Dropdown
           name={OPTIONS.height.name}
           storageKey={OPTIONS.height.storageKey}
           values={OPTIONS.height.values}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Width</Typography>
+
         <Slider
           name={OPTIONS.width.name}
           min={OPTIONS.width.min}
@@ -43,9 +56,13 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.width.storageKey}
           units={OPTIONS.width.units}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Vertical Padding</Typography>
+
         <Slider
           name={OPTIONS.verticalPadding.name}
           min={OPTIONS.verticalPadding.min}
@@ -54,9 +71,13 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.verticalPadding.storageKey}
           units={OPTIONS.verticalPadding.units}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Horizontal Padding</Typography>
+
         <Slider
           name={OPTIONS.horizontalPadding.name}
           min={OPTIONS.horizontalPadding.min}
@@ -65,20 +86,31 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.horizontalPadding.storageKey}
           units={OPTIONS.horizontalPadding.units}
         />
+
       </div>
+
     </Grid>
+
     <Grid item>
+
       <Typography align="center">Window</Typography>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Justification</Typography>
+
         <Dropdown
           name={OPTIONS.windowDisplay.name}
           storageKey={OPTIONS.windowDisplay.storageKey}
           values={OPTIONS.windowDisplay.values}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Vertical Padding</Typography>
+
         <Slider
           name={OPTIONS.windowVerticalPadding.name}
           min={OPTIONS.windowVerticalPadding.min}
@@ -87,9 +119,13 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.windowVerticalPadding.storageKey}
           units={OPTIONS.windowVerticalPadding.units}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Horizontal Padding</Typography>
+
         <Slider
           name={OPTIONS.windowHorizontalPadding.name}
           min={OPTIONS.windowHorizontalPadding.min}
@@ -98,20 +134,31 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.windowHorizontalPadding.storageKey}
           units={OPTIONS.windowHorizontalPadding.units}
         />
+
       </div>
+
     </Grid>
+
     <Grid item>
+
       <Typography align="center">Text</Typography>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Align</Typography>
+
         <Dropdown
           name={OPTIONS.textAlign.name}
           storageKey={OPTIONS.textAlign.storageKey}
           values={OPTIONS.textAlign.values}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Vertical Padding</Typography>
+
         <Slider
           name={OPTIONS.textVerticalPadding.name}
           min={OPTIONS.textVerticalPadding.min}
@@ -120,9 +167,13 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.textVerticalPadding.storageKey}
           units={OPTIONS.textVerticalPadding.units}
         />
+
       </div>
+
       <div className="someOption">
+
         <Typography className="someOptionName">Horizontal Padding</Typography>
+
         <Slider
           name={OPTIONS.textHorizontalPadding.name}
           min={OPTIONS.textHorizontalPadding.min}
@@ -131,9 +182,13 @@ const LayoutEditor = () => (
           storageKey={OPTIONS.textHorizontalPadding.storageKey}
           units={OPTIONS.textHorizontalPadding.units}
         />
+
       </div>
+
     </Grid>
+
   </Grid>
+
 )
 
 export default LayoutEditor
