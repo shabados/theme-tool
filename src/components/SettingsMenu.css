@@ -1,0 +1,24 @@
+.settings-menu{
+    display: flex;
+    flex-grow: 1;
+    height: 100vh;
+    min-width: fit-content;
+}
+
+.tabs .MuiTab-root { 
+    min-width: unset 
+}
+
+.tabs { 
+    border-right: 2px solid rgba(230, 215, 215, 0.521);
+}
+
+.option {
+    display: flex;
+    min-width: fit-content;
+}
+
+.option-label {
+    padding-top: 5px;
+    padding-right: 10px;
+}

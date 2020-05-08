@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 import {
   any,
-  bool,
   func,
-  number,
+  bool,
   string,
   arrayOf,
+  oneOfType,
 } from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,103 +23,60 @@ import {
 import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
-import { SettingsContext } from '../lib/contexts'
 
-const generalPropTypes = {
-  option: string.isRequired,
-  onChange: func,
-}
-
-const generalDefaultProps = {
-  onChange: () => {},
-}
-
-const GeneralSettingEvent = Component => {
-  const HOC = ( { option, onChange, ...props } ) => (
-    <Component {...props} onChange={( { target: { value } } ) => onChange( option, value )} />
-  )
-
-  HOC.propTypes = generalPropTypes
-  HOC.defaultProps = generalDefaultProps
-
-  return HOC
-}
-
-const GeneralSettingParam = Component => {
-  const HOC = ( { option, onChange, ...props } ) => (
-    <Component {...props} onChange={( _, value ) => onChange( option, value )} />
-  )
-
-  HOC.propTypes = generalPropTypes
-  HOC.defaultProps = generalDefaultProps
-
-  return HOC
-}
-
-export const Toggle = ( { value, ...props } ) => <Switch className={classNames( 'toggle', { checked: value } )} checked={value} {...props} />
+export const Toggle = ( { value, onChange, ...props } ) => (
+  <Switch
+    className={classNames( 'toggle', { checked: JSON.parse( value ) } )}
+    checked={JSON.parse( value )}
+    onChange={event => onChange( event.target.checked )}
+    {...props}
+  />
+)
 
 Toggle.propTypes = {
-  value: bool.isRequired,
+  value: oneOfType( [ string, bool ] ).isRequired,
+  onChange: func.isRequired,
 }
 
-export const Slider = ( { name, min, max, step, storageKey, units, ...props } ) => {
-  const [ settings, setSettings ] = useContext( SettingsContext )
-
-  return (
-    <MaterialSlider
-      className="slider"
-      valueLabelDisplay="auto"
-      value={settings[name] || window.localStorage.getItem( storageKey ).split( units )[0]}
-      min={min}
-      max={max}
-      step={step}
-      onChange={( _event, newValue ) => {
-        setSettings( { ...settings, [name]: newValue } )
-        document.documentElement.style.setProperty( storageKey, `${newValue}${units}` )
-        window.localStorage.setItem( storageKey, `${newValue}${units}` )
-      }}
-      {...props}
-    />
-  )
-}
+export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
+  <MaterialSlider
+    className="slider"
+    valueLabelDisplay="auto"
+    value={value.split( units )[0]}
+    onChange={( _event, newValue ) => onChange( `${newValue}${units}` )}
+    {...props}
+  />
+)
 
 Slider.propTypes = {
-  name: string.isRequired,
-  min: number.isRequired,
-  max: number.isRequired,
-  step: number.isRequired,
-  storageKey: string.isRequired,
+  value: string.isRequired,
   units: string.isRequired,
+  storageKey: string.isRequired,
+  onChange: func.isRequired,
 }
 
-export const Dropdown = ( { name, storageKey, values, ...props } ) => {
-  const [ settings, setSettings ] = useContext( SettingsContext )
+export const Dropdown = ( { name, storageKey, value, values, onChange, ...props } ) => (
+  <Select
+    className="select"
+    MenuProps={{ className: 'select-menu' }}
+    value={value}
+    onChange={( _event, { key } ) => { onChange( key ) }}
+    {...props}
+  >
 
-  return (
-    <Select
-      className="select"
-      MenuProps={{ className: 'select-menu' }}
-      value={settings[name] || window.localStorage.getItem( storageKey )}
-      onChange={event => {
-        setSettings( { ...settings, [name]: event.target.value } )
-        document.documentElement.style.setProperty( storageKey, event.target.value )
-        window.localStorage.setItem( storageKey, event.target.value )
-      }}
-      {...props}
-    >
+    {values.map(
+      ( { name, value } ) => <MenuItem key={value} value={value}>{name || value}</MenuItem>,
+    )}
 
-      {values.map(
-        ( { name, value } ) => <MenuItem key={value} value={value}>{name || value}</MenuItem>,
-      )}
-
-    </Select>
-  )
-}
+  </Select>
+)
 
 Dropdown.propTypes = {
   name: string.isRequired,
   storageKey: string.isRequired,
   values: arrayOf( any ).isRequired,
+  onChange: func.isRequired,
+  value: string.isRequired,
 }
 
 export const Button = ( { className, ...props } ) => (
@@ -138,33 +95,7 @@ Button.defaultProps = {
   className: null,
 }
 
-export const ColorPicker = ( { name, storageKey, ...props } ) => {
-  const [ settings, setSettings ] = useContext( SettingsContext )
-
-  return (
-    <SketchPicker
-      className="colorPicker"
-      color={settings[name] || window.localStorage.getItem( storageKey )}
-      onChange={color => {
-        const rgba = color.rgb
-        setSettings( { ...settings, [name]: color.rgb } )
-        document.documentElement.style.setProperty( storageKey, `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})` )
-      }}
-      onChangeComplete={color => {
-        const rgba = color.rgb
-        window.localStorage.setItem( storageKey, `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})` )
-      }}
-      {...props}
-    />
-  )
-}
-
-ColorPicker.propTypes = {
-  name: string.isRequired,
-  storageKey: string.isRequired,
-}
-
-export const PopoverIcon = ( { icon, component, ...props } ) => {
+export const PopoverColorPicker = ( { name, value, icon, storageKey, onChange, ...props } ) => {
   const [ anchorEl, setAnchorEl ] = useState( null )
   const open = Boolean( anchorEl )
   const id = open ? 'simple-popover' : undefined
@@ -184,7 +115,7 @@ export const PopoverIcon = ( { icon, component, ...props } ) => {
         icon={icon}
         onClick={handleClick}
         size="lg"
-        {...props}
+        color={value}
       />
 
       <Popover
@@ -200,27 +131,34 @@ export const PopoverIcon = ( { icon, component, ...props } ) => {
           vertical: 'bottom',
           horizontal: 'left',
         }}
-        {...props}
       >
 
-        {component}
+        <SketchPicker
+          className="colorPicker"
+          color={value}
+          onChange={( { rgb } ) => { onChange( `rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})` ) }}
+          {...props}
+        />
 
       </Popover>
-      
+
     </div>
   )
 }
 
-PopoverIcon.propTypes = {
+PopoverColorPicker.propTypes = {
+  value: string.isRequired,
   icon: any.isRequired,
-  component: any.isRequired,
+  name: string.isRequired,
+  storageKey: string.isRequired,
+  onChange: func.isRequired,
 }
 
 const typeComponents = {
-  [OPTION_TYPES.dropdown]: GeneralSettingEvent( Dropdown ),
-  [OPTION_TYPES.toggle]: GeneralSettingParam( Toggle ),
-  [OPTION_TYPES.slider]: GeneralSettingParam( Slider ),
-  [OPTION_TYPES.colorPicker]: GeneralSettingParam( ColorPicker ),
+  [OPTION_TYPES.dropdown]: Dropdown,
+  [OPTION_TYPES.toggle]: Toggle,
+  [OPTION_TYPES.slider]: Slider,
+  [OPTION_TYPES.popoverColorPicker]: PopoverColorPicker,
 }
 
 export default type => typeComponents[type]
