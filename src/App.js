@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import SplitPane from 'react-split-pane'
 
 import Overlay from './components/Preview'
