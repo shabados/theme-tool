@@ -37,7 +37,7 @@ const EditorPanel = () => {
       >
         {TABS.map( ( { name, icon } ) => <Tab label={name} icon={<FontAwesomeIcon icon={icon} size="2x" />} value={name} /> )}
 
-        <Tab label="Export" icon={<FontAwesomeIcon icon={faSave} size="2x"/>} value="Export" />
+        <Tab label="Export" icon={<FontAwesomeIcon icon={faSave} size="2x" />} value="Export" />
 
       </Tabs>
 
@@ -50,7 +50,6 @@ const EditorPanel = () => {
           <Box p={2}>
 
             {options.map( optionName => {
-
               // Grab the actual option
               const { name, type, storageKey, ...props } = OPTIONS[optionName]
 
@@ -61,7 +60,7 @@ const EditorPanel = () => {
               const onChange = value => setSettings( { [optionName]: value } )
 
               return (
-                <Box className="option">
+                <Box className="option" padding="0.3em 0">
 
                   <Typography className="option-label">{name}</Typography>
 
