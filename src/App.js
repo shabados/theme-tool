@@ -21,6 +21,10 @@ import {
   TRANSLATION_SPANSISH,
 } from './lib/mool-mantar'
 
+//! Refactor, must load first
+loadStorage()
+loadCss()
+
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
     Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
@@ -32,11 +36,6 @@ const App = () => {
 
     return { ...settings, ...updatedSettings }
   }, {} )
-
-  useEffect( () => {
-    loadStorage()
-    loadCss()
-  } )
 
   return (
     <SettingsContext.Provider value={settingsState}>
