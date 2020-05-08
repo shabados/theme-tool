@@ -2,7 +2,7 @@
  * https://github.com/ShabadOS/desktop/blob/dev/app/frontend/src/lib/utils.js
  */
 
-import TemplateStyleSheet from './template-stylesheet.json'
+import { OPTIONS } from './options'
 
 // Detect vishraams/pauses with characters
 export const PAUSE_CHARS = {
@@ -57,16 +57,19 @@ export const partitionLine = ( line, strip = true ) => classifyWords( line, stri
 
 // Write template Stylesheet to localstorage
 export const loadStorage = () => {
-  if ( localStorage.length <= 36 ) {
-    Object.keys( TemplateStyleSheet )
-      .forEach( key => ( window.localStorage.setItem( key, TemplateStyleSheet[key] ) ) )
+  if ( localStorage.length < Object.keys( OPTIONS ).length ) {
+    Object.values( OPTIONS )
+      .forEach( ( { storageKey, initial } ) => (
+        window.localStorage.setItem( storageKey, initial )
+      ) )
   }
 }
 
 // Load stylesheet from local storage
 export const loadCss = () => {
-  Object.keys( TemplateStyleSheet )
-    .forEach( key => (
-      document.documentElement.style.setProperty( key, localStorage[key] )
+  Object.values( OPTIONS )
+    .filter( ( { storageKey } ) => storageKey.includes( '--' ) )
+    .forEach( ( { storageKey } ) => (
+      document.documentElement.style.setProperty( storageKey, localStorage[storageKey] )
     ) )
 }

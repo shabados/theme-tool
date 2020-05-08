@@ -1,6 +1,6 @@
-import TemplateStyleSheet from './template-stylesheet.json'
+import { OPTIONS } from './options'
 
-let GENERATED_FILE = null
+let generateFile = null
 
 /**
  * Reads the values from local storage
@@ -10,10 +10,11 @@ let GENERATED_FILE = null
 const getData = () => [
   ':root{\n',
   '/* Generated using ShabadOS Theme Generator */\n',
-  ...Object.keys( TemplateStyleSheet )
-    .filter( key => localStorage[key] !== 'none' )
-    .filter( key => localStorage[key] !== 'inherit' )
-    .map( key => ( `${key}:${localStorage[key]}\n` ) ),
+  ...Object.values( OPTIONS )
+    .filter( ( { storageKey } ) => storageKey.includes( '--' ) )
+    .filter( ( { storageKey } ) => localStorage[storageKey] !== 'none' )
+    .filter( ( { storageKey } ) => localStorage[storageKey] !== 'inherit' )
+    .map( ( { storageKey } ) => ( `${storageKey}: ${localStorage[storageKey]};\n` ) ),
   '}',
 ]
 
@@ -23,11 +24,11 @@ const getData = () => [
  */
 const makeCssFile = () => {
   const dataFile = new Blob( getData(), { type: 'text/plain' } )
-  if ( GENERATED_FILE !== null ) {
-    window.URL.revokeObjectURL( GENERATED_FILE )
+  if ( generateFile !== null ) {
+    window.URL.revokeObjectURL( generateFile )
   }
-  GENERATED_FILE = window.URL.createObjectURL( dataFile )
-  return GENERATED_FILE
+  generateFile = window.URL.createObjectURL( dataFile )
+  return generateFile
 }
 
 

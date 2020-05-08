@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import SplitPane from 'react-split-pane'
 
 import Overlay from './components/preview'
-import EditorPanel from './components/settingsMenu'
-// import onClike from './components/generate'
-
+import EditorPanel from './components/SettingsMenu'
 
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage } from './lib/utils'
+import { OPTIONS } from './lib/options'
 
 import './App.css'
 
@@ -22,18 +21,32 @@ import {
   TRANSLATION_SPANSISH,
 } from './lib/mool-mantar'
 
-loadStorage()
-loadCss()
-
 const App = () => {
-  const settingsState = useState( {} )
+  const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
+    Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
+      const { storageKey } = OPTIONS[name]
+
+      if ( storageKey.includes( '--' ) ) document.documentElement.style.setProperty( storageKey, value )
+      window.localStorage.setItem( storageKey, value )
+    } )
+
+    return { ...settings, ...updatedSettings }
+  }, {} )
+
+  useEffect( () => {
+    loadStorage()
+    loadCss()
+  } )
 
   return (
     <SettingsContext.Provider value={settingsState}>
 
 
       <div className="app">
-        <SplitPane split="vertical" minSize={400} primary="second" allowResize={false}>
+        <SplitPane split="vertical" size={350} allowResize={false}>
+          <div className="editior">
+            <EditorPanel />
+          </div>
           <div className="overlay">
             <Overlay
               {...( {
@@ -48,9 +61,6 @@ const App = () => {
                 urduTransliteration: TRANSLITERATION_URDU,
               } )}
             />
-          </div>
-          <div className="editior">
-            <EditorPanel />
           </div>
         </SplitPane>
       </div>

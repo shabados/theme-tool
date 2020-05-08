@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+  Box,
   Dialog,
   DialogTitle,
   DialogActions,
@@ -39,7 +40,7 @@ const ExportEditor = () => {
   }
 
   return (
-    <div>
+    <Box p={2}>
       <Button onClick={saveFile}>
         Save
       </Button>
@@ -84,7 +85,7 @@ const ExportEditor = () => {
 
         </Dialog>
       </div>
-    </div>
+    </Box>
   )
 }
 
