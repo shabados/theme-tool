@@ -2,7 +2,7 @@
 import React, { useEffect, useReducer } from 'react'
 import SplitPane from 'react-split-pane'
 
-import Overlay from './components/preview'
+import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
 
 import { SettingsContext } from './lib/contexts'

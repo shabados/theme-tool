@@ -5,7 +5,7 @@ import { string, bool, oneOfType } from 'prop-types'
 import { partitionLine, classifyWords } from '../lib/utils'
 import { SettingsContext } from '../lib/contexts'
 
-import './preview.css'
+import './Preview.css'
 
 /**
  * Overlay Line Component.

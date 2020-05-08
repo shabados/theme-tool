@@ -13,7 +13,7 @@ import { SettingsContext } from '../lib/contexts'
 
 import SettingFactory from './SettingComponent'
 
-import ExportEditor from './editors/exportEditor'
+import ExportEditor from './editors/ExportEditor'
 
 import './SettingsMenu.css'
 
