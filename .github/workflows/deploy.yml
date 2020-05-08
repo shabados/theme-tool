@@ -40,6 +40,6 @@ jobs:
           keep_history: true
           allow_empty_commit: false
           commit_message: ${{ github.event.head_commit.message }}
-          fdqn: themes.shabados.com
+          fqdn: themes.shabados.com
         env:
           GITHUB_PAT: ${{ secrets.GH_BOT_TOKEN }}
