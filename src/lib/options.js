@@ -81,9 +81,9 @@ const PREVIEW_OPTIONS = {
 
 const OVERLAY_OPTIONS = {
   flexJustification: { name: 'Justification', type: OPTION_TYPES.dropdown, values: FLEX, storageKey: '--overlay-flex-justification', initial: 'flex-start' },
-  height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'initial', value: 'inherit' }, { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'inherit' },
+  height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
   width: { name: 'Width', type: OPTION_TYPES.slider, min: 10, max: 100, step: 1, storageKey: '--overlay-width', initial: 'inherit', units: 'vw' },
-  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '2vh' },
+  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 1, max: 10, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '2vh' },
   horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: 'var(--overlay-vertical-padding)' },
   backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool #8
@@ -106,7 +106,7 @@ const TEXT_OPTIONS = {
   backgroundTextColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-text-background-color', initial: 'none' },
   // Need to implement theme-tool #8
   // backgroundTextSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-text-background-size', initial: 'contain' },
-  
+
   // Font
   primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8vh' },
   primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-primary-font-color', initial: '#ffd22b' },
