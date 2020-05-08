@@ -1,21 +1,22 @@
 name: Build and Deploy
 
 on:
-    push:
-      branches: [ master ]
+  push:
+    branches: [master]
 
 jobs:
-  name: Build and Deploy
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v2
+  build-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-  - name: Use Node.js 12.x
+      - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
 
-  - name: Cache Node.js modules
+      - name: Cache Node.js modules
         uses: actions/cache@v1
         with:
           path: ~/.npm
@@ -24,13 +25,13 @@ jobs:
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
 
-  - name: Install npm dependencies
+      - name: Install npm dependencies
         run: npm i
-  
-  - name: Run Build
+
+      - name: Run Build
         run: npm run build
-  
-  - name: Deploy to GH Pages
+
+      - name: Deploy to GH Pages
         uses: crazy-max/ghaction-github-pages@v1
         with:
           build_dir: build
