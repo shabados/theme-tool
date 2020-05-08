@@ -5,6 +5,10 @@
     min-width: fit-content;
 }
 
+.settings-menu .pane {
+  overflow-y: auto;
+}
+
 .tabs .MuiTab-root { 
     min-width: unset 
 }

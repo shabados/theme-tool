@@ -47,7 +47,7 @@ const EditorPanel = () => {
         .filter( ( { name } ) => name === tabName )
         .map( ( { options } ) => (
 
-          <Box p={2}>
+          <Box className="pane" p={2}>
 
             {options.map( optionName => {
               // Grab the actual option
