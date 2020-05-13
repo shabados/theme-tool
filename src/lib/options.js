@@ -118,9 +118,10 @@ const TEXT_OPTIONS = {
   secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-secondary-drop-color', initial: 'none' },
 
   // Vishraam
-  vishraamHeavyColor: { name: 'Heavy Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-vishraam-heavy-color', initial: 'inherit' },
-  vishraamMediumColor: { name: 'Medium Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-vishraam-medium-color', initial: 'inherit' },
-  vishraamLightColor: { name: 'Light Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-vishraam-light-color', initial: 'inherit' },
+  // Need to be implemented in Desktop first
+  // vishraamHeavyColor: { name: 'Heavy Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-vishraam-heavy-color', initial: 'inherit' },
+  // vishraamMediumColor: { name: 'Medium Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-vishraam-medium-color', initial: 'inherit' },
+  // vishraamLightColor: { name: 'Light Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faEyeDropper, storageKey: '--overlay-vishraam-light-color', initial: 'inherit' },
 
 }
 
