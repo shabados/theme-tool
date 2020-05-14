@@ -22,6 +22,13 @@ const FLEX = [
   { name: 'Bottom', value: 'flex-end' },
 ]
 
+const RATIOS = [
+  { name: '16:9', value: '56.25%' },
+  { name: '8:5', value: '62.5%' },
+  { name: '3:2', value: '66.66%' },
+  { name: '4:3', value: '75%' },
+]
+
 // Unique symbols for each option type
 export const OPTION_TYPES = {
   dropdown: Symbol( 'Dropdown' ),
@@ -88,6 +95,7 @@ const PREVIEW_OPTIONS = {
 }
 
 const OVERLAY_OPTIONS = {
+  aspectRatio: { name: 'Aspect Ratio', type: OPTION_TYPES.dropdown, values: RATIOS, storageKey: '--aspect-ratio', initial: '56.25%' },
   flexJustification: { name: 'Justification', type: OPTION_TYPES.dropdown, values: FLEX, storageKey: '--overlay-flex-justification', initial: 'flex-start' },
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
   width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
