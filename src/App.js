@@ -47,19 +47,21 @@ const App = () => {
             <EditorPanel />
           </div>
           <div className="editor-overlay">
-            <Overlay
-              {...( {
-                gurmukhi: GURMUKHI,
-                larivaarGurbani: true,
-                larivaarAssist: true,
-                englishTranslation: TRANSLATION_ENGLISH,
-                punjabiTranslation: TRANSLATION_PUNJABI,
-                spanishTranslation: TRANSLATION_SPANSISH,
-                englishTransliteration: TRANSLITERATION_ENGLISH,
-                hindiTransliteration: TRANSLITERATION_DEVNAGRI,
-                urduTransliteration: TRANSLITERATION_URDU,
-              } )}
-            />
+            <div className="editor-overlay-preview">
+              <Overlay
+                {...( {
+                  gurmukhi: GURMUKHI,
+                  larivaarGurbani: true,
+                  larivaarAssist: true,
+                  englishTranslation: TRANSLATION_ENGLISH,
+                  punjabiTranslation: TRANSLATION_PUNJABI,
+                  spanishTranslation: TRANSLATION_SPANSISH,
+                  englishTransliteration: TRANSLITERATION_ENGLISH,
+                  hindiTransliteration: TRANSLITERATION_DEVNAGRI,
+                  urduTransliteration: TRANSLITERATION_URDU,
+                } )}
+              />
+            </div>
           </div>
         </SplitPane>
       </div>
