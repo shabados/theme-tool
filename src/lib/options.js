@@ -23,10 +23,11 @@ const FLEX = [
 ]
 
 const RATIOS = [
-  { name: '16:9', value: '56.25%' },
-  { name: '8:5', value: '62.5%' },
-  { name: '3:2', value: '66.66%' },
-  { name: '4:3', value: '75%' },
+  { name: '16:9 (standard)', value: '56.25%' },
+  { name: '9:16 (vertical)', value: '‭177.7777777777778‬%' },
+  { name: '1.91:1 (horizontal)', value: '‭52.35602094240838‬%' },
+  { name: '4:5 (portrait)', value: '125%' },
+  { name: '1:1 (square)', value: '100%' },
 ]
 
 // Unique symbols for each option type
