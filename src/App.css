@@ -17,6 +17,8 @@
   position: relative;
   padding-bottom: var(--aspect-ratio);
   background-image: url('./assets/images/background.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .app .editor-overlay .editor-overlay-preview{
