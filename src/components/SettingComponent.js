@@ -4,6 +4,7 @@ import {
   any,
   func,
   bool,
+  shape,
   string,
   arrayOf,
   oneOfType,
@@ -148,7 +149,7 @@ export const PopoverColorPicker = ( { name, value, icon, storageKey, onChange, .
 
 PopoverColorPicker.propTypes = {
   value: string.isRequired,
-  icon: any.isRequired,
+  icon: shape( {} ).isRequired,
   name: string.isRequired,
   storageKey: string.isRequired,
   onChange: func.isRequired,
