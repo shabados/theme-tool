@@ -8,11 +8,11 @@
 
 .app .Pane2 {
   background-color: rgba(70, 68, 68, 0.253);
-  border: solid rgba(0, 0, 0, 0.795) 5px;
-  padding: 1%;
+  padding: 5em;
 }
 
 .app .editor-overlay {
+  border: 1px solid red;
   width: 100%;
   position: relative;
   padding-bottom: var(--aspect-ratio);
