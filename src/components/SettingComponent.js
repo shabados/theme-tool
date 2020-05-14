@@ -155,11 +155,14 @@ PopoverColorPicker.propTypes = {
   onChange: func.isRequired,
 }
 
+export const SkipRender = () => null
+
 const typeComponents = {
   [OPTION_TYPES.dropdown]: Dropdown,
   [OPTION_TYPES.toggle]: Toggle,
   [OPTION_TYPES.slider]: Slider,
   [OPTION_TYPES.popoverColorPicker]: PopoverColorPicker,
+  [OPTION_TYPES.skipRendering]: SkipRender,
 }
 
 export default type => typeComponents[type]
