@@ -1,13 +1,15 @@
-.app {
-  background-color: white;
-} 
+.app > * {
+  background: #2D2026;
+  color: #000;
+}
 
 .app .pane-1 {
-  background-color: rgba(211, 209, 209, 0.301);
+  background-color: rgba(211, 209, 209, 0.101);
+  min-width: 350px;
 }
 
 .app .pane-2 {
-  background-color: rgba(70, 68, 68, 0.253);
+  background-color: #fff;
   padding: 5em;
 }
 

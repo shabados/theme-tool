@@ -6,7 +6,11 @@
 }
 
 .settings-menu .pane {
+  width: 75%;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5em;
+  background-color: #F0EDE9;
 }
 
 .tabs .MuiTab-root { 
@@ -15,14 +19,30 @@
 
 .tabs {
   border-right: 2px solid rgba(230, 215, 215, 0.521);
+  width: 25%;
 }
 
 .option {
   display: flex;
   min-width: fit-content;
+  flex-direction: column;
+  margin-bottom: 1.5em;
 }
 
 .option .option-label {
-  padding-top: 5px;
-  padding-right: 10px;
+  padding-left: 10px;
+  font-size: .8em;
+  opacity: .7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.option svg.fa-square {
+  padding-left: 10px;
+}
+
+.option svg.fa-square > path {
+  stroke: black;
+  stroke-width: .5em;
+  padding-left: 10px;
 }
