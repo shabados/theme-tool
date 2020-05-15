@@ -10,6 +10,8 @@ import { loadCss, loadStorage } from './lib/utils'
 import { OPTIONS } from './lib/options'
 
 import './App.css'
+import { ThemeProvider } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 import {
   GURMUKHI,
@@ -25,6 +27,22 @@ import {
 loadStorage()
 loadCss()
 
+
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#DCCDA2"
+    },
+    secondary: {
+      main: "#DCCDA2"
+    },
+  },
+  contrastThreshold: 3,
+  tonalOffset: 0.2,
+});
+
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
     Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
@@ -39,33 +57,32 @@ const App = () => {
 
   return (
     <SettingsContext.Provider value={settingsState}>
-
-
-      <div className="app">
-        <SplitPane split="vertical" size={350} allowResize={false}>
-          <div className="editior-settings">
-            <EditorPanel />
-          </div>
-          <div className="editor-overlay">
-            <div className="editor-overlay-preview">
-              <Overlay
-                {...( {
-                  gurmukhi: GURMUKHI,
-                  larivaarGurbani: true,
-                  larivaarAssist: true,
-                  englishTranslation: TRANSLATION_ENGLISH,
-                  punjabiTranslation: TRANSLATION_PUNJABI,
-                  spanishTranslation: TRANSLATION_SPANSISH,
-                  englishTransliteration: TRANSLITERATION_ENGLISH,
-                  hindiTransliteration: TRANSLITERATION_DEVNAGRI,
-                  urduTransliteration: TRANSLITERATION_URDU,
-                } )}
-              />
+      <ThemeProvider theme={darkTheme}>
+        <div className="app">
+          <SplitPane split="vertical" size="20%" allowResize={false}>
+            <div className="editior-settings">
+              <EditorPanel />
             </div>
-          </div>
-        </SplitPane>
-      </div>
-
+            <div className="editor-overlay">
+              <div className="editor-overlay-preview">
+                <Overlay
+                  {...( {
+                    gurmukhi: GURMUKHI,
+                    larivaarGurbani: true,
+                    larivaarAssist: true,
+                    englishTranslation: TRANSLATION_ENGLISH,
+                    punjabiTranslation: TRANSLATION_PUNJABI,
+                    spanishTranslation: TRANSLATION_SPANSISH,
+                    englishTransliteration: TRANSLITERATION_ENGLISH,
+                    hindiTransliteration: TRANSLITERATION_DEVNAGRI,
+                    urduTransliteration: TRANSLITERATION_URDU,
+                  } )}
+                />
+              </div>
+            </div>
+          </SplitPane>
+        </div>
+      </ThemeProvider>
     </SettingsContext.Provider>
   )
 }
