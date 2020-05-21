@@ -1,18 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useReducer } from 'react'
 import SplitPane from 'react-split-pane'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
-
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage } from './lib/utils'
 import { OPTIONS } from './lib/options'
-
-import './App.css'
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-
-
 import {
   GURMUKHI,
   TRANSLITERATION_ENGLISH,
@@ -22,6 +17,9 @@ import {
   TRANSLATION_PUNJABI,
   TRANSLATION_SPANSISH,
 } from './lib/mool-mantar'
+
+import './App.css'
+
 
 //! Refactor, must load first
 loadStorage()
