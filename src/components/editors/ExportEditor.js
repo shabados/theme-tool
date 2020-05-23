@@ -44,8 +44,10 @@ const ExportEditor = () => {
         label="Theme Name"
         placeholder={themeName}
         onChange={( { target: { value } } ) => {
-          if ( value.trim() ) setThemeName( `Overlay ${timestamp()}` )
-          setThemeName( value )
+          // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
+          // Else User given string
+          if ( value.trim() === '' ) setThemeName( `Overlay ${timestamp()}` )
+          else setThemeName( value )
         }}
       />
 
