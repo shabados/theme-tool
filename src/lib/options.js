@@ -22,11 +22,11 @@ const FLEX = [
 ]
 
 const RATIOS = [
-  { name: '16:9 (standard)', value: '56.25%' },
-  { name: '9:16 (vertical)', value: '‭177.7777777777778‬%' },
-  { name: '1.91:1 (horizontal)', value: '‭52.35602094240838‬%' },
-  { name: '4:5 (portrait)', value: '125%' },
-  { name: '1:1 (square)', value: '100%' },
+  { name: '16:9 (standard)', value: 16 / 9 },
+  { name: '9:16 (vertical)', value: 9 / 16 },
+  { name: '1.91:1 (horizontal)', value: 1.91 },
+  { name: '4:5 (portrait)', value: 4 / 5 },
+  { name: '1:1 (square)', value: 1 },
 ]
 
 // Unique symbols for each option type
@@ -78,13 +78,13 @@ export const OPTION_TYPES = {
  * { name: false
  *   type: symbol
  *   storageKey: string
- *   intial: any
+ *   initial: any
  * }
  *
  */
 
 const PREVIEW_OPTIONS = {
-  aspectRatio: { name: 'Aspect Ratio', type: OPTION_TYPES.dropdown, values: RATIOS, storageKey: '--aspect-ratio', initial: '56.25%' },
+  aspectRatio: { name: 'Aspect Ratio', type: OPTION_TYPES.dropdown, values: RATIOS, storageKey: 'aspectRatio', initial: RATIOS[0].value },
   larivaarGurbani: { name: 'Larivaar Gurbani', type: OPTION_TYPES.toggle, storageKey: 'larivaarGurbani', initial: false },
   larivaarAssist: { name: 'Larivaar Assist', type: OPTION_TYPES.toggle, storageKey: 'larivaarAssist', initial: false },
   englishTranslation: { name: 'English Translation', type: OPTION_TYPES.toggle, storageKey: 'englishTranslation', initial: false },
