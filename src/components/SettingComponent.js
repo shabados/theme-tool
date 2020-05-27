@@ -95,7 +95,7 @@ Button.defaultProps = {
   className: null,
 }
 
-export const PopoverColorPicker = ( { name, value, icon, storageKey, onChange, ...props } ) => {
+export const PopoverColorPicker = ( { name, value, icon, storageKey, onChange, disableAlpha, ...props } ) => {
   const [ anchorEl, setAnchorEl ] = useState( null )
   const open = Boolean( anchorEl )
   const id = open ? 'simple-popover' : undefined
@@ -137,6 +137,7 @@ export const PopoverColorPicker = ( { name, value, icon, storageKey, onChange, .
           className="colorPicker"
           color={value}
           onChange={( { rgb } ) => { onChange( `rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})` ) }}
+          disableAlpha={disableAlpha}
           {...props}
         />
 
