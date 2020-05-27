@@ -47,42 +47,45 @@ const Overlay = ( {
   ].filter( ( [ , , enabled ] ) => enabled )
 
   return (
+    <div className="overlay">
 
-    <div className={classNames( className, {
-      larivaar: settings.larivaarGurbani,
-      assist: settings.larivaarGurbani && settings.larivaarAssist,
-    }, 'overlay-line' )}
-    >
+      <div className={classNames( className, {
+        larivaar: settings.larivaarGurbani,
+        assist: settings.larivaarGurbani && settings.larivaarAssist,
+      }, 'overlay-line' )}
+      >
 
-      <p className="gurmukhi">
-
-        <span className="text">
-          {line}
-        </span>
-
-      </p>
-
-      {translations.map( ( [ name, translation ] ) => (
-        <p key={`${name}-${translation}`} className={classNames( name, 'translation' )}>
+        <p className="gurmukhi">
 
           <span className="text">
-            {translation}
+            {line}
           </span>
 
         </p>
-      ) )}
 
-      {transliterations.map( ( [ name, transliteration ] ) => (
-        <p key={`${name}-${transliteration}`} className={classNames( name, 'transliteration' )}>
+        {translations.map( ( [ name, translation ] ) => (
+          <p key={`${name}-${translation}`} className={classNames( name, 'translation' )}>
 
-          <span className="text">
-            {classifyWords( transliteration, true ).map(
-              ( { word, type }, i ) => <span key={`${word}-${type}-${i}`} className={classNames( type, 'word' )}>{word}</span>,
-            )}
-          </span>
+            <span className="text">
+              {translation}
+            </span>
 
-        </p>
-      ) )}
+          </p>
+        ) )}
+
+        {transliterations.map( ( [ name, transliteration ] ) => (
+          <p key={`${name}-${transliteration}`} className={classNames( name, 'transliteration' )}>
+
+            <span className="text">
+              {classifyWords( transliteration, true ).map(
+                ( { word, type }, i ) => <span key={`${word}-${type}-${i}`} className={classNames( type, 'word' )}>{word}</span>,
+              )}
+            </span>
+
+          </p>
+        ) )}
+
+      </div>
 
     </div>
 
