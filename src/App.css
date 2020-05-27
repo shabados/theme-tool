@@ -7,10 +7,10 @@
   height: 100%;
 }
 
-.app .editor-settings {
+.app .pane-1 {
   background-color: rgba(211, 209, 209, 0.301);
 }
 
-.app .editor-overlay {
+.app .pane-2 {
   border: solid rgba(0, 0, 0, 0.795) 5px;
 }
