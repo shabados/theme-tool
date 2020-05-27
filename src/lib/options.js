@@ -44,7 +44,7 @@ export const OPTION_TYPES = {
  *   type: symbol
  *   values: array with objects
  *   storageKey: string
- *   intial: string
+ *   initial: string
  * }
  *
  * Slider Type schema
@@ -63,14 +63,14 @@ export const OPTION_TYPES = {
  *   type: symbol
  *   icon: fortawesome icon
  *   storageKey: string
- *   inital: string
+ *   initial: string
  * }
  *
  * Toggle Type schema
  * { name: string
  *   type: symbol
  *   storageKey: string
- *   intial: bool
+ *   initial: bool
  *
  * }
  *
