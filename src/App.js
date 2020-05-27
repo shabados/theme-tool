@@ -11,11 +11,11 @@ import { OPTIONS } from './lib/options'
 import {
   GURMUKHI,
   TRANSLITERATION_ENGLISH,
-  TRANSLITERATION_DEVNAGRI,
+  TRANSLITERATION_DEVANAGARI,
   TRANSLITERATION_URDU,
   TRANSLATION_ENGLISH,
   TRANSLATION_PUNJABI,
-  TRANSLATION_SPANSISH,
+  TRANSLATION_SPANISH,
 } from './lib/mool-mantar'
 
 import './App.css'
@@ -83,9 +83,9 @@ const App = () => {
                     larivaarAssist: true,
                     englishTranslation: TRANSLATION_ENGLISH,
                     punjabiTranslation: TRANSLATION_PUNJABI,
-                    spanishTranslation: TRANSLATION_SPANSISH,
+                    spanishTranslation: TRANSLATION_SPANISH,
                     englishTransliteration: TRANSLITERATION_ENGLISH,
-                    hindiTransliteration: TRANSLITERATION_DEVNAGRI,
+                    hindiTransliteration: TRANSLITERATION_DEVANAGARI,
                     urduTransliteration: TRANSLITERATION_URDU,
                   } )}
                 />
