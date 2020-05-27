@@ -42,11 +42,17 @@ const App = () => {
 
 
       <div className="app">
-        <SplitPane split="vertical" size={350} allowResize={false}>
-          <div className="editior">
+        <SplitPane
+          split="vertical"
+          size={350}
+          allowResize={false}
+          pane1ClassName="pane-1"
+          pane2ClassName="pane-2"
+        >
+          <div className="editor-settings">
             <EditorPanel />
           </div>
-          <div className="overlay">
+          <div className="editor-overlay">
             <Overlay
               {...( {
                 gurmukhi: GURMUKHI,
