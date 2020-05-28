@@ -70,11 +70,9 @@ const App = () => {
               <EditorPanel />
             </div>
 
-
             <div className="editor-overlay">
 
               <div className="editor-overlay-preview">
-
 
                 <Overlay
                   {...( {
@@ -89,7 +87,6 @@ const App = () => {
                     urduTransliteration: TRANSLITERATION_URDU,
                   } )}
                 />
-
 
               </div>
 
