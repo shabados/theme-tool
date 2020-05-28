@@ -8,15 +8,7 @@ import EditorPanel from './components/SettingsMenu'
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage } from './lib/utils'
 import { OPTIONS } from './lib/options'
-import {
-  GURMUKHI,
-  TRANSLITERATION_ENGLISH,
-  TRANSLITERATION_DEVANAGARI,
-  TRANSLITERATION_URDU,
-  TRANSLATION_ENGLISH,
-  TRANSLATION_PUNJABI,
-  TRANSLATION_SPANISH,
-} from './lib/mool-mantar'
+import MOOL_MANTAR from './lib/mool-mantar'
 
 import './App.css'
 
@@ -74,19 +66,7 @@ const App = () => {
 
               <div className="editor-overlay-preview">
 
-                <Overlay
-                  {...( {
-                    gurmukhi: GURMUKHI,
-                    larivaarGurbani: true,
-                    larivaarAssist: true,
-                    englishTranslation: TRANSLATION_ENGLISH,
-                    punjabiTranslation: TRANSLATION_PUNJABI,
-                    spanishTranslation: TRANSLATION_SPANISH,
-                    englishTransliteration: TRANSLITERATION_ENGLISH,
-                    hindiTransliteration: TRANSLITERATION_DEVANAGARI,
-                    urduTransliteration: TRANSLITERATION_URDU,
-                  } )}
-                />
+                <Overlay {...( { ...MOOL_MANTAR } )} />
 
               </div>
 
