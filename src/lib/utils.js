@@ -73,3 +73,5 @@ export const loadCss = () => {
       document.documentElement.style.setProperty( storageKey, localStorage[storageKey] )
     ) )
 }
+
+export const timestamp = () => new Date().toISOString().replace( /\.\d{3}\w$/, '' ).replace( 'T', ' ' )

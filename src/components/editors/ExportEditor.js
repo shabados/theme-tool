@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Box,
   Dialog,
+  TextField,
   DialogTitle,
   DialogActions,
   DialogContent,
@@ -9,17 +10,18 @@ import {
 } from '@material-ui/core'
 
 import makeCssFile from '../../lib/generate'
-import { loadStorage, loadCss } from '../../lib/utils'
+import { loadStorage, loadCss, timestamp } from '../../lib/utils'
 
 import { Button } from '../SettingComponent'
 
 const ExportEditor = () => {
   const [ settings, setSettings ] = useState( false )
+  const [ themeName, setThemeName ] = useState( `Overlay ${timestamp()}` )
 
   const saveFile = () => {
     const link = document.createElement( 'a' )
     link.href = makeCssFile()
-    link.setAttribute( 'download', 'customTheme.css' )
+    link.setAttribute( 'download', `${themeName}.css` )
     link.click()
   }
 
@@ -36,6 +38,19 @@ const ExportEditor = () => {
 
   return (
     <Box p={2}>
+
+      <TextField
+        id="standard-basic"
+        label="Theme Name"
+        placeholder={themeName}
+        onChange={( { target: { value } } ) => {
+          // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
+          // Else User given string
+          if ( value.trim() === '' ) setThemeName( `Overlay ${timestamp()}` )
+          else setThemeName( value )
+        }}
+      />
+
       <Button onClick={saveFile}>
         Save
       </Button>
@@ -79,6 +94,7 @@ const ExportEditor = () => {
           </DialogActions>
 
         </Dialog>
+
       </div>
     </Box>
   )
