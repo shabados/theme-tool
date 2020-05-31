@@ -65,13 +65,39 @@ export const loadStorage = () => {
   }
 }
 
+/**
+ * Returns a object with RGBA.
+ * @param {string} value RGBA
+ * https://stackoverflow.com/a/11003212/11321732
+ */
+const getColorObject = value => {
+  if ( [ 'none', 'undefined', null ].includes( value ) ) return null
+  const rgba = value.match( /\d+/g )
+  const rgbaObject = { r: rgba[0], g: rgba[1], b: rgba[2], a: rgba[3] }
+  return rgbaObject
+}
+
+const writeCssToDom = ( key, value ) => document.documentElement.style.setProperty( key, value )
+
+/**
+ * Writes values for CSS to the DOM
+ * @param {string} key CSS variable to update.
+ * @param {string} value new value.
+ */
+export const writeCss = ( key, value ) => {
+  // Drop colors require to be string https://github.com/ShabadOS/desktop/blob/fc01ec563178ad605e42c2274b030da366063a13/app/frontend/src/Overlay/themes/Example.template#L82
+  if ( key.includes( 'drop' ) ) {
+    const rgba = getColorObject( value )
+    if ( rgba === null ) writeCssToDom( key, value )
+    else writeCssToDom( key, `${rgba.r}, ${rgba.g}, ${rgba.b}` )
+  } else writeCssToDom( key, localStorage[key] )
+}
+
 // Load stylesheet from local storage
 export const loadCss = () => {
   Object.values( OPTIONS )
     .filter( ( { storageKey } ) => storageKey.includes( '--' ) )
-    .forEach( ( { storageKey } ) => (
-      document.documentElement.style.setProperty( storageKey, localStorage[storageKey] )
-    ) )
+    .forEach( ( { storageKey } ) => writeCss( storageKey, localStorage[storageKey] ) )
 }
 
 export const timestamp = () => new Date().toISOString().replace( /\.\d{3}\w$/, '' ).replace( 'T', ' ' )
