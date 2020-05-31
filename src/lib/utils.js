@@ -72,9 +72,8 @@ export const loadStorage = () => {
  */
 const getColorObject = value => {
   if ( [ 'none', 'undefined', null ].includes( value ) ) return null
-  const rgba = value.match( /\d+/g )
-  const rgbaObject = { r: rgba[0], g: rgba[1], b: rgba[2], a: rgba[3] }
-  return rgbaObject
+  const [ r, g, b, a ] = value.match( /\d+/g )
+  return { r, g, b, a }
 }
 
 const writeCssToDom = ( key, value ) => document.documentElement.style.setProperty( key, value )
