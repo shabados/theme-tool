@@ -2,7 +2,7 @@
  * https://github.com/ShabadOS/desktop/blob/dev/app/frontend/src/lib/utils.js
  */
 
-import { OPTIONS } from './options'
+import { OPTIONS, DROP_COLORS } from './options'
 
 // Detect vishraams/pauses with characters
 export const PAUSE_CHARS = {
@@ -85,10 +85,9 @@ const writeCssToDom = ( key, value ) => document.documentElement.style.setProper
  */
 export const writeCss = ( key, value ) => {
   // Drop colors require to be string https://github.com/ShabadOS/desktop/blob/fc01ec563178ad605e42c2274b030da366063a13/app/frontend/src/Overlay/themes/Example.template#L82
-  if ( key.includes( 'drop' ) ) {
+  if ( DROP_COLORS.includes( key ) ) {
     const rgba = getColorObject( value )
-    if ( rgba === null ) writeCssToDom( key, value )
-    else writeCssToDom( key, `${rgba.r}, ${rgba.g}, ${rgba.b}` )
+    writeCssToDom( key, rgba ? `${rgba.r}, ${rgba.g}, ${rgba.b}` : value )
   } else writeCssToDom( key, localStorage[key] )
 }
 
