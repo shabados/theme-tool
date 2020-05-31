@@ -6,7 +6,7 @@ import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
 
 import { SettingsContext } from './lib/contexts'
-import { loadCss, loadStorage } from './lib/utils'
+import { loadCss, loadStorage, writeCss } from './lib/utils'
 import { OPTIONS } from './lib/options'
 
 import './App.css'
@@ -29,8 +29,7 @@ const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
     Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
       const { storageKey } = OPTIONS[name]
-
-      if ( storageKey.includes( '--' ) ) document.documentElement.style.setProperty( storageKey, value )
+      writeCss( storageKey, value )
       window.localStorage.setItem( storageKey, value )
     } )
 
