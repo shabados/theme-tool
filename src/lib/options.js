@@ -54,6 +54,7 @@ export const OPTION_TYPES = {
  *   type: symbol
  *   storageKey: string
  *   inital: string
+ *   disableAlpha: boolean
  * }
  *
  * Toggle Type schema
@@ -114,14 +115,14 @@ const TEXT_OPTIONS = {
   // backgroundTextSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-text-background-size', initial: 'contain' },
 
   // Font
-  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 2, max: 10, step: 0.01, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8' },
-  primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-font-color', initial: '#ffd22b' },
-  primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929' },
-  primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-drop-color', initial: 'none' },
-  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 1, max: 10, step: 0.01, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: '2.88' },
-  secondaryFontColor: { name: 'Secondary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-font-color', initial: '#FFFFFF' },
-  secondaryLarivaarAssistColor: { name: 'Secondary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-larivaar-assist-color', initial: '#eaffff' },
-  secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-drop-color', initial: 'none' },
+  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8vh' },
+  primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-font-color', initial: '#ffd22b', disableAlpha: true },
+  primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929', disableAlpha: true },
+  primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-drop-color', initial: 'none', disableAlpha: true },
+  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: 'calc( var(--overlay-primary-font-size) * 0.6 )' },
+  secondaryFontColor: { name: 'Secondary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-font-color', initial: '#FFFFFF', disableAlpha: true },
+  secondaryLarivaarAssistColor: { name: 'Secondary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-larivaar-assist-color', initial: '#eaffff', disableAlpha: true },
+  secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-drop-color', initial: 'none', disableAlpha: true },
 
   // Vishraam
   // Need to be implemented in Desktop first
