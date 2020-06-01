@@ -61,9 +61,9 @@ export const OPTION_TYPES = {
  * Color Type schema
  * { name: string
  *   type: symbol
- *   icon: fortawesome icon
  *   storageKey: string
- *   initial: string
+ *   inital: string
+ *   disableAlpha: boolean
  * }
  *
  * Toggle Type schema
@@ -99,10 +99,10 @@ const OVERLAY_OPTIONS = {
   flexJustification: { name: 'Justification', type: OPTION_TYPES.dropdown, values: FLEX, storageKey: '--overlay-flex-justification', initial: 'flex-start' },
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
   width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
-  overlayWidth: { name: false, type: OPTION_TYPES.skipRendering, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
+  overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
   verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
   horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
-  backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-background-color', initial: '#000' },
+  backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool#8
   // backgroundSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-background-size', initial: 'cover' },
 }
@@ -111,7 +111,7 @@ const WINDOW_OPTIONS = {
   windowDisplay: { name: 'Display', type: OPTION_TYPES.dropdown, values: [ { name: 'Flex', value: 'flex' }, { name: 'Inline Block', value: 'inline-block' } ], storageKey: '--overlay-window-display', initial: 'flex' },
   windowVerticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-window-vertical-padding', units: 'vh', initial: '0' },
   windowHorizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-window-horizontal-padding', units: 'vw', initial: '0' },
-  backgroundWindowColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-window-background-color', initial: 'none' },
+  backgroundWindowColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-window-background-color', initial: 'none' },
   // Need to implement theme-tool #8
   // backgroundWindowSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-window-background-size', initial: 'cover' },
 }
@@ -120,25 +120,25 @@ const TEXT_OPTIONS = {
   textAlign: { name: 'Alignment', type: OPTION_TYPES.dropdown, values: TEXT_ALIGN, storageKey: '--overlay-text-align', initial: 'center' },
   textVerticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-text-vertical-padding', units: 'vh', initial: '0' },
   textHorizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-text-horizontal-padding', units: 'vw', initial: '0' },
-  backgroundTextColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-text-background-color', initial: 'none' },
+  backgroundTextColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-text-background-color', initial: 'none' },
   // Need to implement theme-tool #8
   // backgroundTextSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-text-background-size', initial: 'contain' },
 
   // Font
-  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 2, max: 10, step: 0.01, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8' },
-  primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-primary-font-color', initial: '#ffd22b' },
-  primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929' },
-  primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-primary-drop-color', initial: 'none' },
-  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 1, max: 10, step: 0.01, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: '2.88' },
-  secondaryFontColor: { name: 'Secondary Font Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-secondary-font-color', initial: '#FFFFFF' },
-  secondaryLarivaarAssistColor: { name: 'Secondary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-secondary-larivaar-assist-color', initial: '#eaffff' },
-  secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-secondary-drop-color', initial: 'none' },
+  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8vh' },
+  primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-font-color', initial: '#ffd22b', disableAlpha: true },
+  primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929', disableAlpha: true },
+  primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-drop-color', initial: 'none', disableAlpha: true },
+  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: 'calc( var(--overlay-primary-font-size) * 0.6 )' },
+  secondaryFontColor: { name: 'Secondary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-font-color', initial: '#FFFFFF', disableAlpha: true },
+  secondaryLarivaarAssistColor: { name: 'Secondary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-larivaar-assist-color', initial: '#eaffff', disableAlpha: true },
+  secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-drop-color', initial: 'none', disableAlpha: true },
 
   // Vishraam
   // Need to be implemented in Desktop first
-  // vishraamHeavyColor: { name: 'Heavy Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-vishraam-heavy-color', initial: 'inherit' },
-  // vishraamMediumColor: { name: 'Medium Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-vishraam-medium-color', initial: 'inherit' },
-  // vishraamLightColor: { name: 'Light Vishraam Color', type: OPTION_TYPES.popoverColorPicker, icon: faSquare, storageKey: '--overlay-vishraam-light-color', initial: 'inherit' },
+  // vishraamHeavyColor: { name: 'Heavy Vishraam Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-vishraam-heavy-color', initial: 'inherit' },
+  // vishraamMediumColor: { name: 'Medium Vishraam Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-vishraam-medium-color', initial: 'inherit' },
+  // vishraamLightColor: { name: 'Light Vishraam Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-vishraam-light-color', initial: 'inherit' },
 
 }
 
