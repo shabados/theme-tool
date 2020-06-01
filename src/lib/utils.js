@@ -59,9 +59,11 @@ export const partitionLine = ( line, strip = true ) => classifyWords( line, stri
 export const loadStorage = () => {
   if ( localStorage.length < Object.keys( OPTIONS ).length ) {
     Object.values( OPTIONS )
-      .forEach( ( { storageKey, initial } ) => (
-        window.localStorage.setItem( storageKey, initial )
-      ) )
+      .forEach( ( { storageKey, initial, units } ) => {
+        if ( units !== undefined ) {
+          window.localStorage.setItem( storageKey, `${initial}${units}` )
+        } else window.localStorage.setItem( storageKey, initial )
+      } )
   }
 }
 
