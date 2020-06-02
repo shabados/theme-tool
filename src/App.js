@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import SplitPane from 'react-split-pane'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
+import RatioBox from './components/RatioBox'
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage } from './lib/utils'
 import { OPTIONS } from './lib/options'
@@ -32,17 +33,57 @@ const darkTheme = createMuiTheme( {
   tonalOffset: 0.2,
 } )
 
+const UNIT_FACTORS = [
+  [ 'vw', 1 ],
+  [ 'vh', 47.2 ],
+]
+
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
     Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
       const { storageKey } = OPTIONS[name]
 
-      if ( storageKey.includes( '--' ) ) document.documentElement.style.setProperty( storageKey, value )
+      if ( storageKey.includes( '--' ) ) {
+        const [ unit, factor ] = UNIT_FACTORS.find( ( [ UNIT ] ) => value.includes( UNIT ) ) || []
+
+        let unitValue = value
+
+        if ( unit ) {
+          [ unitValue ] = value.split( unit )
+          unitValue *= factor
+          unitValue += '%'
+          // console.log( unitValue )
+        }
+
+        // 15.1 px/6px = 2.5167
+        document.documentElement.style.setProperty( storageKey, unitValue )
+      }
+
       window.localStorage.setItem( storageKey, value )
     } )
 
     return { ...settings, ...updatedSettings }
   }, {} )
+
+  const [ { aspectRatio }, setSettings ] = settingsState
+
+  useEffect( () => {
+    const initialSettings = Object.entries( OPTIONS ).reduce( ( acc, [ name, { storageKey } ] ) => {
+      const value = localStorage[storageKey]
+
+      const result = { ...acc }
+
+      try {
+        result[name] = JSON.parse( value )
+      } catch ( err ) {
+        result[name] = value
+      }
+
+      return result
+    }, {} )
+
+    setSettings( initialSettings )
+  }, [ setSettings ] )
 
   return (
     <SettingsContext.Provider value={settingsState}>
@@ -62,15 +103,17 @@ const App = () => {
               <EditorPanel />
             </div>
 
-            <div className="editor-overlay">
+            <RatioBox ratio={aspectRatio}>
+              <div className="editor-overlay">
 
-              <div className="editor-overlay-preview">
+                <div className="editor-overlay-preview">
 
-                <Overlay {...( { ...MOOL_MANTAR } )} />
+                  <Overlay {...( { ...MOOL_MANTAR } )} />
+
+                </div>
 
               </div>
-
-            </div>
+            </RatioBox>
 
           </SplitPane>
 
