@@ -171,3 +171,8 @@ export const TABS = [
     icon: faTextWidth,
   },
 ]
+
+export const DROP_COLORS = [
+  OPTIONS.primaryDropColor.storageKey,
+  OPTIONS.secondaryDropColor.storageKey,
+]
