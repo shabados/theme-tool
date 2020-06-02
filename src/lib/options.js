@@ -35,7 +35,6 @@ export const OPTION_TYPES = {
   toggle: Symbol( 'Toggle' ),
   slider: Symbol( 'Slider' ),
   popoverColorPicker: Symbol( 'Popover Color Picker' ),
-  skipRendering: Symbol( 'Skip this option' ),
 }
 
 /**
