@@ -2,7 +2,7 @@
  * https://github.com/ShabadOS/desktop/blob/dev/app/frontend/src/lib/utils.js
  */
 
-import { OPTIONS } from './options'
+import { OPTIONS, DROP_COLORS } from './options'
 
 // Detect vishraams/pauses with characters
 export const PAUSE_CHARS = {
@@ -67,13 +67,39 @@ export const loadStorage = () => {
   }
 }
 
+/**
+ * Returns a object with RGBA.
+ * @param {string} value RGBA
+ * https://stackoverflow.com/a/11003212/11321732
+ */
+const getColorObject = value => {
+  if ( [ 'none', 'undefined', null ].includes( value ) ) return null
+  const [ r, g, b, a ] = value.match( /\d+/g )
+  return { r, g, b, a }
+}
+
+const writeCssToDom = ( key, value ) => document.documentElement.style.setProperty( key, value )
+
+/**
+ * Writes values for CSS to the DOM
+ * @param {string} key CSS variable to update.
+ * @param {string} value new value.
+ */
+export const writeCss = ( key, value ) => {
+  // Drop colors require to be string https://github.com/ShabadOS/desktop/blob/fc01ec563178ad605e42c2274b030da366063a13/app/frontend/src/Overlay/themes/Example.template#L82
+  if ( DROP_COLORS.includes( key ) ) {
+    const rgba = getColorObject( value )
+    writeCssToDom( key, rgba ? `${rgba.r}, ${rgba.g}, ${rgba.b}` : value )
+    return
+  }
+  writeCssToDom( key, localStorage[key] )
+}
+
 // Load stylesheet from local storage
 export const loadCss = () => {
   Object.values( OPTIONS )
     .filter( ( { storageKey } ) => storageKey.includes( '--' ) )
-    .forEach( ( { storageKey } ) => (
-      document.documentElement.style.setProperty( storageKey, localStorage[storageKey] )
-    ) )
+    .forEach( ( { storageKey } ) => writeCss( storageKey, localStorage[storageKey] ) )
 }
 
 export const timestamp = () => new Date().toISOString().replace( /\.\d{3}\w$/, '' ).replace( 'T', ' ' )

@@ -7,7 +7,7 @@ import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
 import RatioBox from './components/RatioBox'
 import { SettingsContext } from './lib/contexts'
-import { loadCss, loadStorage } from './lib/utils'
+import { loadCss, loadStorage, writeCss } from './lib/utils'
 import { OPTIONS } from './lib/options'
 import MOOL_MANTAR from './lib/mool-mantar'
 
@@ -56,9 +56,10 @@ const App = () => {
         }
 
         // 15.1 px/6px = 2.5167
-        document.documentElement.style.setProperty( storageKey, unitValue )
+        writeCss( storageKey, unitValue )
       }
 
+      writeCss( storageKey, value )
       window.localStorage.setItem( storageKey, value )
     } )
 

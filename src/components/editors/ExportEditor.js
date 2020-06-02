@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core'
 
 import makeCssFile from '../../lib/generate'
-import { loadStorage, loadCss, timestamp } from '../../lib/utils'
+import { timestamp } from '../../lib/utils'
 
 import { Button } from '../SettingComponent'
 
@@ -31,9 +31,8 @@ const ExportEditor = () => {
 
   const resetEditor = () => {
     window.localStorage.clear()
-    loadStorage()
-    loadCss()
     setSettings( false )
+    window.location.reload()
   }
 
   return (
