@@ -88,7 +88,9 @@ export const writeCss = ( key, value ) => {
   if ( DROP_COLORS.includes( key ) ) {
     const rgba = getColorObject( value )
     writeCssToDom( key, rgba ? `${rgba.r}, ${rgba.g}, ${rgba.b}` : value )
-  } else writeCssToDom( key, localStorage[key] )
+    return
+  }
+  writeCssToDom( key, localStorage[key] )
 }
 
 // Load stylesheet from local storage
