@@ -21,6 +21,14 @@ const FLEX = [
   { name: 'Bottom', value: 'flex-end' },
 ]
 
+const RATIOS = [
+  { name: '16:9 (standard)', value: '56.25%' },
+  { name: '9:16 (vertical)', value: '‭177.7777777777778‬%' },
+  { name: '1.91:1 (horizontal)', value: '‭52.35602094240838‬%' },
+  { name: '4:5 (portrait)', value: '125%' },
+  { name: '1:1 (square)', value: '100%' },
+]
+
 // Unique symbols for each option type
 export const OPTION_TYPES = {
   dropdown: Symbol( 'Dropdown' ),
@@ -35,7 +43,7 @@ export const OPTION_TYPES = {
  *   type: symbol
  *   values: array with objects
  *   storageKey: string
- *   intial: string
+ *   initial: string
  * }
  *
  * Slider Type schema
@@ -61,7 +69,7 @@ export const OPTION_TYPES = {
  * { name: string
  *   type: symbol
  *   storageKey: string
- *   intial: bool
+ *   initial: bool
  *
  * }
  *
@@ -75,6 +83,7 @@ export const OPTION_TYPES = {
  */
 
 const PREVIEW_OPTIONS = {
+  aspectRatio: { name: 'Aspect Ratio', type: OPTION_TYPES.dropdown, values: RATIOS, storageKey: '--aspect-ratio', initial: '56.25%' },
   larivaarGurbani: { name: 'Larivaar Gurbani', type: OPTION_TYPES.toggle, storageKey: 'larivaarGurbani', initial: false },
   larivaarAssist: { name: 'Larivaar Assist', type: OPTION_TYPES.toggle, storageKey: 'larivaarAssist', initial: false },
   englishTranslation: { name: 'English Translation', type: OPTION_TYPES.toggle, storageKey: 'englishTranslation', initial: false },
