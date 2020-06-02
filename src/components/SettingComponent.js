@@ -10,7 +10,7 @@ import {
 } from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEyeDropper } from '@fortawesome/free-solid-svg-icons'
+import { faSquare } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Select,
@@ -113,7 +113,7 @@ export const PopoverColorPicker = ( { name, value, storageKey, onChange, ...prop
     <div>
 
       <FontAwesomeIcon
-        icon={faEyeDropper}
+        icon={faSquare}
         onClick={handleClick}
         size="lg"
         color={value}

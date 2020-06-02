@@ -8,12 +8,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from '@fortawesome/free-solid-svg-icons'
 
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { TABS, OPTIONS } from '../lib/options'
 import { SettingsContext } from '../lib/contexts'
 
 import SettingFactory from './SettingComponent'
 
 import ExportEditor from './editors/ExportEditor'
+
 
 import './SettingsMenu.css'
 
@@ -22,6 +24,20 @@ const EditorPanel = () => {
   const [ tabName, setTab ] = React.useState( TABS[0].name )
 
   const handleChange = ( _event, value ) => setTab( value )
+
+  const lightTheme = createMuiTheme( {
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#693E4B',
+      },
+      secondary: {
+        main: '#693E4B',
+      },
+    },
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  } )
 
   return (
     <div className="settings-menu">
@@ -47,19 +63,20 @@ const EditorPanel = () => {
         .filter( ( { name } ) => name === tabName )
         .map( ( { options } ) => (
 
-          <Box className="pane" p={2}>
+          <ThemeProvider theme={lightTheme}>
+            <Box className="pane" p={2}>
 
-            {options.map( optionName => {
-              // Grab the actual option
-              const { name, type, storageKey, ...props } = OPTIONS[optionName]
+              {options.map( optionName => {
+                // Grab the actual option
+                const { name, type, storageKey, ...props } = OPTIONS[optionName]
 
-              // Get the component for the given type
-              const Setting = SettingFactory( type )
+                // Get the component for the given type
+                const Setting = SettingFactory( type )
 
-              // onChange for any setting
-              const onChange = value => setSettings( { [optionName]: value } )
+                // onChange for any setting
+                const onChange = value => setSettings( { [optionName]: value } )
 
-              return name && (
+                return name && (
                 <Box className="option" padding="0.3em 0">
 
                   <Typography className="option-label">{name}</Typography>
@@ -73,10 +90,11 @@ const EditorPanel = () => {
                   />
 
                 </Box>
-              )
-            } )}
+                )
+              } )}
 
-          </Box>
+            </Box>
+          </ThemeProvider>
         ) )}
 
     </div>
