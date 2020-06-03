@@ -51,7 +51,7 @@ const EditorPanel = () => {
         scrollButtons="auto"
         className="tabs"
       >
-        {TABS.map( ( { name, icon } ) => <Tab label={name} icon={<FontAwesomeIcon icon={icon} size="2x" />} value={name} /> )}
+        {TABS.map( ( { name, icon } ) => <Tab key={name} label={name} icon={<FontAwesomeIcon icon={icon} size="2x" />} value={name} /> )}
 
         <Tab label="Export" icon={<FontAwesomeIcon icon={faSave} size="2x" />} value="Export" />
 
@@ -63,7 +63,7 @@ const EditorPanel = () => {
         .filter( ( { name } ) => name === tabName )
         .map( ( { options } ) => (
 
-          <ThemeProvider theme={lightTheme}>
+          <ThemeProvider key={options} theme={lightTheme}>
             <Box className="pane" p={2}>
 
               {options.map( optionName => {
@@ -77,7 +77,7 @@ const EditorPanel = () => {
                 const onChange = value => setSettings( { [optionName]: value } )
 
                 return name && (
-                <Box className="option" padding="0.3em 0">
+                <Box key={optionName} className="option" padding="0.3em 0">
 
                   <Typography className="option-label">{name}</Typography>
 
