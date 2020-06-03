@@ -5,6 +5,7 @@ import {
   func,
   bool,
   string,
+  number,
   arrayOf,
   oneOfType,
 } from 'prop-types'
@@ -52,9 +53,11 @@ export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
 Slider.propTypes = {
   value: string.isRequired,
   units: string.isRequired,
-  storageKey: string.isRequired,
+  storageKey: string,
   onChange: func.isRequired,
 }
+
+Slider.defaultProps = { storageKey: null }
 
 export const Dropdown = ( { name, storageKey, value, values, onChange, ...props } ) => (
   <Select
@@ -74,11 +77,13 @@ export const Dropdown = ( { name, storageKey, value, values, onChange, ...props 
 
 Dropdown.propTypes = {
   name: string.isRequired,
-  storageKey: string.isRequired,
+  storageKey: string,
   values: arrayOf( any ).isRequired,
   onChange: func.isRequired,
-  value: string.isRequired,
+  value: oneOfType( [ string, number ] ).isRequired,
 }
+
+Dropdown.defaultProps = { storageKey: null }
 
 export const Button = ( { className, ...props } ) => (
   <MaterialButton
@@ -150,9 +155,11 @@ export const PopoverColorPicker = ( { name, value, storageKey, onChange, ...prop
 PopoverColorPicker.propTypes = {
   value: string.isRequired,
   name: string.isRequired,
-  storageKey: string.isRequired,
+  storageKey: string,
   onChange: func.isRequired,
 }
+
+PopoverColorPicker.defaultProps = { storageKey: null }
 
 
 const typeComponents = {
