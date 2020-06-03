@@ -124,7 +124,7 @@ const TEXT_OPTIONS = {
   // backgroundTextSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-text-background-size', initial: 'contain' },
 
   // Font
-  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8vh' },
+  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8' },
   primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-font-color', initial: '#ffd22b', disableAlpha: true },
   primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929', disableAlpha: true },
   primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-drop-color', initial: 'none', disableAlpha: true },
