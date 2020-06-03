@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 
 const useWindowSize = () => {
@@ -23,7 +24,7 @@ const useWindowSize = () => {
 
     window.addEventListener( 'resize', handleResize )
     return () => window.removeEventListener( 'resize', handleResize )
-  }, [] ) // Empty array ensures that effect is only run on mount and unmount
+  }, [ ] ) // Empty array ensures that effect is only run on mount and unmount
 
   return windowSize
 }
