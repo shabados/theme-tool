@@ -78,7 +78,7 @@ const getColorObject = value => {
   return { r, g, b, a }
 }
 
-const writeCssToDom = ( key, value ) => document.documentElement.style.setProperty( key, value )
+export const writeCssToDom = ( key, value ) => document.documentElement.style.setProperty( key, value )
 
 /**
  * Writes values for CSS to the DOM

@@ -33,32 +33,11 @@ const darkTheme = createMuiTheme( {
   tonalOffset: 0.2,
 } )
 
-const UNIT_FACTORS = [
-  [ 'vw', 1 ],
-  [ 'vh', 47.2 ],
-]
 
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
     Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
       const { storageKey } = OPTIONS[name]
-
-      if ( storageKey.includes( '--' ) ) {
-        const [ unit, factor ] = UNIT_FACTORS.find( ( [ UNIT ] ) => value.includes( UNIT ) ) || []
-
-        let unitValue = value
-
-        if ( unit ) {
-          [ unitValue ] = value.split( unit )
-          unitValue *= factor
-          unitValue += '%'
-          // console.log( unitValue )
-        }
-
-        // 15.1 px/6px = 2.5167
-        writeCss( storageKey, unitValue )
-      }
-
       writeCss( storageKey, value )
       window.localStorage.setItem( storageKey, value )
     } )

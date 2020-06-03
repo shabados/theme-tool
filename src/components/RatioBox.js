@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import { node, number } from 'prop-types'
 
 import useWindowResize from '../hooks/use-window-size'
+import { writeCssToDom } from '../lib/utils'
 
 import './RatioBox.css'
 
@@ -24,6 +25,10 @@ const RatioBox = ( { ratio, children } ) => {
     ratioWidth = width
     ratioHeight = width / ratio
   }
+
+  // Use parent window dimensions for ratio factor
+  writeCssToDom( '--vh-factor', ratioHeight / windowSize.height )
+  writeCssToDom( '--vw-factor', ratioWidth / windowSize.width )
 
   return (
     <div className="ratio-box">
