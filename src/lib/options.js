@@ -99,7 +99,7 @@ const OVERLAY_OPTIONS = {
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
   width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
   overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
-  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
+  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
   horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
   backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool#8
