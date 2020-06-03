@@ -128,7 +128,7 @@ const TEXT_OPTIONS = {
   primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-font-color', initial: '#ffd22b', disableAlpha: true },
   primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929', disableAlpha: true },
   primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-drop-color', initial: 'none', disableAlpha: true },
-  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: 'calc( var(--overlay-primary-font-size) * 0.6 )' },
+  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: '2.88' },
   secondaryFontColor: { name: 'Secondary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-font-color', initial: '#FFFFFF', disableAlpha: true },
   secondaryLarivaarAssistColor: { name: 'Secondary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-larivaar-assist-color', initial: '#eaffff', disableAlpha: true },
   secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-drop-color', initial: 'none', disableAlpha: true },
