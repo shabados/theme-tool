@@ -40,24 +40,30 @@ Toggle.propTypes = {
   onChange: func.isRequired,
 }
 
+
 export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
   <MaterialSlider
     className="slider"
     valueLabelDisplay="auto"
-    value={value.split( units )[0]}
-    onChange={( _event, newValue ) => onChange( `${newValue}${units}` )}
+    value={units ? value.split( units )[0] : value}
+    onChange={( _event, newValue ) => onChange( units ? `${newValue}${units}` : `${newValue}` )}
     {...props}
   />
 )
 
+
 Slider.propTypes = {
-  value: string.isRequired,
-  units: string.isRequired,
+  value: oneOfType( [ string, number ] ).isRequired,
+  units: string,
   storageKey: string,
   onChange: func.isRequired,
 }
 
-Slider.defaultProps = { storageKey: null }
+Slider.defaultProps = {
+  storageKey: null,
+  units: null,
+
+}
 
 export const Dropdown = ( { name, storageKey, value, values, onChange, ...props } ) => (
   <Select
