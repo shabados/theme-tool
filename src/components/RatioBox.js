@@ -42,8 +42,12 @@ const RatioBox = ( { ratio, children } ) => {
 }
 
 RatioBox.propTypes = {
-  ratio: number.isRequired,
+  ratio: number,
   children: node.isRequired,
+}
+
+RatioBox.defaultProps = {
+  ratio: 0,
 }
 
 export default RatioBox
