@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, lazy, Suspense } from 'react'
 import SplitPane from 'react-split-pane'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
-import RatioBox from './components/RatioBox'
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage, writeCss } from './lib/utils'
 import { OPTIONS } from './lib/options'
@@ -13,6 +12,7 @@ import MOOL_MANTAR from './lib/mool-mantar'
 
 import './App.css'
 
+const RatioBox = lazy( () => import( './components/RatioBox' ) )
 
 //! Refactor, must load first
 loadStorage()
@@ -83,17 +83,21 @@ const App = () => {
               <EditorPanel />
             </div>
 
-            <RatioBox ratio={aspectRatio}>
-              <div className="editor-overlay">
+            <Suspense fallback={<div>Loading...</div>}>
 
-                <div className="editor-overlay-preview">
+              <RatioBox ratio={aspectRatio}>
+                <div className="editor-overlay">
 
-                  <Overlay {...( { ...MOOL_MANTAR } )} />
+                  <div className="editor-overlay-preview">
+
+                    <Overlay {...( { ...MOOL_MANTAR } )} />
+
+                  </div>
 
                 </div>
+              </RatioBox>
 
-              </div>
-            </RatioBox>
+            </Suspense>
 
           </SplitPane>
 

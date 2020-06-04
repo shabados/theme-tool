@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import {
   Box,
   Tab,
@@ -14,10 +14,9 @@ import { SettingsContext } from '../lib/contexts'
 
 import SettingFactory from './SettingComponent'
 
-import ExportEditor from './editors/ExportEditor'
-
-
 import './SettingsMenu.css'
+
+const ExportEditor = lazy( () => import( './editors/ExportEditor' ) )
 
 const EditorPanel = () => {
   const [ settings, setSettings ] = useContext( SettingsContext )
@@ -41,6 +40,7 @@ const EditorPanel = () => {
 
   return (
     <div className="settings-menu">
+
       <Tabs
         orientation="vertical"
         value={tabName}
@@ -57,7 +57,9 @@ const EditorPanel = () => {
 
       </Tabs>
 
-      {tabName === 'Export' && <ExportEditor />}
+      <Suspense fallback={<div>loading...</div>}>
+        {tabName === 'Export' && <ExportEditor />}
+      </Suspense>
 
       {TABS
         .filter( ( { name } ) => name === tabName )
