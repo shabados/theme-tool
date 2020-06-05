@@ -11,7 +11,7 @@ import {
 } from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquare } from '@fortawesome/free-solid-svg-icons'
+import { faSquare, faLock, faUnlock } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Select,
@@ -20,11 +20,13 @@ import {
   MenuItem,
   Slider as MaterialSlider,
   Button as MaterialButton,
+  Checkbox,
 } from '@material-ui/core'
 
 import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
+import { writeCssToDom } from '../lib/utils'
 
 export const Toggle = ( { value, onChange, ...props } ) => (
   <Switch
@@ -167,12 +169,50 @@ PopoverColorPicker.propTypes = {
 
 PopoverColorPicker.defaultProps = { storageKey: null }
 
+export const LockButton = ( { name, value, storageKey, onChange, parent, child, childUnits, parentUnits, ...props } ) => {
+  const parentValue = window.localStorage.getItem( parent )
+
+  const lockValues = event => {
+    onChange( event.target.checked )
+    if ( event.target.checked ) {
+      const childValue = `${parentValue.split( parentUnits )[0]}${childUnits}` || `parentValue${childUnits}`
+      writeCssToDom( child, childValue )
+      window.localStorage.setItem( child, childValue )
+    }
+  }
+
+  return (
+    <Checkbox
+      icon={( <FontAwesomeIcon icon={faUnlock} /> )}
+      checkedIcon={( <FontAwesomeIcon icon={faLock} /> )}
+      checked={JSON.parse( value )}
+      onChange={event => lockValues( event )}
+      {...props}
+    />
+
+  )
+}
+
+LockButton.propTypes = {
+  value: string.isRequired,
+  name: string.isRequired,
+  storageKey: string,
+  onChange: func.isRequired,
+  parent: string.isRequired,
+  child: string.isRequired,
+  childUnits: string.isRequired,
+  parentUnits: string.isRequired,
+}
+
+LockButton.defaultProps = { storageKey: null }
+
 
 const typeComponents = {
   [OPTION_TYPES.dropdown]: Dropdown,
   [OPTION_TYPES.toggle]: Toggle,
   [OPTION_TYPES.slider]: Slider,
   [OPTION_TYPES.popoverColorPicker]: PopoverColorPicker,
+  [OPTION_TYPES.lockButton]: LockButton,
 }
 
 export default type => typeComponents[type]

@@ -35,6 +35,7 @@ export const OPTION_TYPES = {
   toggle: Symbol( 'Toggle' ),
   slider: Symbol( 'Slider' ),
   popoverColorPicker: Symbol( 'Popover Color Picker' ),
+  lockButton: Symbol( 'Lock Button' ),
 }
 
 /**
@@ -99,9 +100,10 @@ const OVERLAY_OPTIONS = {
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
   width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
   overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
+  horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 20, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
   verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
-  horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
-  backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
+  lockOverlayPadding: { name: 'Lock Padding', type: OPTION_TYPES.lockButton, storageKey: 'lockOverlayPadding', initial: true, parent: '--overlay-horizontal-padding', child: '--overlay-vertical-padding', parentUnits: 'vw', childUnits: 'vh' },
+  backgroundColor: { name: 'Background Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool#8
   // backgroundSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-background-size', initial: 'cover' },
 }
