@@ -26,7 +26,7 @@ import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
 
-export const Toggle = ( { value, onChange, ...props } ) => (
+export const Toggle = ( { initial, value, onChange, ...props } ) => (
   <Switch
     className={classNames( 'toggle', { checked: JSON.parse( value ) } )}
     checked={JSON.parse( value )}
@@ -36,6 +36,7 @@ export const Toggle = ( { value, onChange, ...props } ) => (
 )
 
 Toggle.propTypes = {
+  initial: bool.isRequired,
   value: oneOfType( [ string, bool ] ).isRequired,
   onChange: func.isRequired,
 }
