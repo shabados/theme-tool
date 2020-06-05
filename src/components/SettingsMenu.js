@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from 'react'
+import React, { useContext, lazy, Suspense, useState } from 'react'
 import {
   Box,
   Tab,
@@ -20,7 +20,7 @@ const ExportEditor = lazy( () => import( './editors/ExportEditor' ) )
 
 const EditorPanel = () => {
   const [ settings, setSettings ] = useContext( SettingsContext )
-  const [ tabName, setTab ] = React.useState( TABS[0].name )
+  const [ tabName, setTab ] = useState( TABS[0].name )
 
   const handleChange = ( _event, value ) => setTab( value )
 
