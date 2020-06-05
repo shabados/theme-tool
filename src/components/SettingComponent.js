@@ -46,7 +46,7 @@ export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
   <MaterialSlider
     className="slider"
     valueLabelDisplay="auto"
-    value={units ? value.split( units )[0] : value}
+    value={+( units ? value.split( units )[0] : value )}
     onChange={( _event, newValue ) => onChange( units ? `${newValue}${units}` : `${newValue}` )}
     {...props}
   />
