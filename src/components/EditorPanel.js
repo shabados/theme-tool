@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense, useState } from 'react'
 import {
   Box,
   Tab,
@@ -14,14 +14,13 @@ import { SettingsContext } from '../lib/contexts'
 
 import SettingFactory from './SettingComponent'
 
-import ExportEditor from './editors/ExportEditor'
+import './EditorPanel.css'
 
-
-import './SettingsMenu.css'
+const ExportEditor = lazy( () => import( './editors/ExportEditor' ) )
 
 const EditorPanel = () => {
   const [ settings, setSettings ] = useContext( SettingsContext )
-  const [ tabName, setTab ] = React.useState( TABS[0].name )
+  const [ tabName, setTab ] = useState( TABS[0].name )
 
   const handleChange = ( _event, value ) => setTab( value )
 
@@ -40,7 +39,8 @@ const EditorPanel = () => {
   } )
 
   return (
-    <div className="settings-menu">
+    <div className="editor-panel">
+
       <Tabs
         orientation="vertical"
         value={tabName}
@@ -51,19 +51,21 @@ const EditorPanel = () => {
         scrollButtons="auto"
         className="tabs"
       >
-        {TABS.map( ( { name, icon } ) => <Tab label={name} icon={<FontAwesomeIcon icon={icon} size="2x" />} value={name} /> )}
+        {TABS.map( ( { name, icon } ) => <Tab key={name} label={name} icon={<FontAwesomeIcon icon={icon} size="2x" />} value={name} /> )}
 
         <Tab label="Export" icon={<FontAwesomeIcon icon={faSave} size="2x" />} value="Export" />
 
       </Tabs>
 
-      {tabName === 'Export' && <ExportEditor />}
+      <Suspense fallback={<div>loading...</div>}>
+        {tabName === 'Export' && <ExportEditor />}
+      </Suspense>
 
       {TABS
         .filter( ( { name } ) => name === tabName )
         .map( ( { options } ) => (
 
-          <ThemeProvider theme={lightTheme}>
+          <ThemeProvider key={options} theme={lightTheme}>
             <Box className="pane" p={2}>
 
               {options.map( optionName => {
@@ -77,7 +79,7 @@ const EditorPanel = () => {
                 const onChange = value => setSettings( { [optionName]: value } )
 
                 return name && (
-                <Box className="option" padding="0.3em 0">
+                <Box key={optionName} className="option" padding="0.3em 0">
 
                   <Typography className="option-label">{name}</Typography>
 
