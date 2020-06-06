@@ -3,8 +3,6 @@ import React, { useReducer, useEffect, lazy, Suspense } from 'react'
 import SplitPane from 'react-split-pane'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
-import Overlay from './components/Preview'
-import EditorPanel from './components/SettingsMenu'
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage, writeCss } from './lib/utils'
 import { OPTIONS } from './lib/options'
@@ -13,11 +11,12 @@ import MOOL_MANTAR from './lib/mool-mantar'
 import './App.css'
 
 const RatioBox = lazy( () => import( './components/RatioBox' ) )
+const EditorPanel = lazy( () => import( './components/EditorPanel' ) )
+const Preview = lazy( () => import( './components/Preview' ) )
 
 //! Refactor, must load first
 loadStorage()
 loadCss()
-
 
 const darkTheme = createMuiTheme( {
   palette: {
@@ -89,7 +88,6 @@ const App = () => {
   return (
     <SettingsContext.Provider value={settingsState}>
       <ThemeProvider theme={darkTheme}>
-
         <div className="app">
 
           <SplitPane
@@ -101,29 +99,28 @@ const App = () => {
           >
 
             <div className="editor-settings">
-              <EditorPanel />
+              <Suspense fallback={<div>Loading...</div>}>
+                <EditorPanel />
+              </Suspense>
             </div>
 
             <Suspense fallback={<div>Loading...</div>}>
-
               <RatioBox ratio={aspectRatio}>
                 <div className="editor-overlay">
-
                   <div className="editor-overlay-preview">
 
-                    <Overlay {...( { ...MOOL_MANTAR } )} />
+                    <Suspense fallback={<div>Loading...</div>}>
+                      <Preview {...( { ...MOOL_MANTAR } )} />
+                    </Suspense>
 
                   </div>
-
                 </div>
               </RatioBox>
-
             </Suspense>
 
           </SplitPane>
 
         </div>
-
       </ThemeProvider>
     </SettingsContext.Provider>
   )

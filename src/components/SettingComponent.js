@@ -28,7 +28,7 @@ import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
 
-export const Toggle = ( { value, onChange, ...props } ) => (
+export const Toggle = ( { initial, value, onChange, ...props } ) => (
   <Switch
     className={classNames( 'toggle', { checked: JSON.parse( value ) } )}
     checked={JSON.parse( value )}
@@ -38,6 +38,7 @@ export const Toggle = ( { value, onChange, ...props } ) => (
 )
 
 Toggle.propTypes = {
+  initial: bool.isRequired,
   value: oneOfType( [ string, bool ] ).isRequired,
   onChange: func.isRequired,
 }
@@ -47,7 +48,7 @@ export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
   <MaterialSlider
     className="slider"
     valueLabelDisplay="auto"
-    value={units ? value.split( units )[0] : value}
+    value={+( units ? value.split( units )[0] : value )}
     onChange={( _event, newValue ) => onChange( units ? `${newValue}${units}` : `${newValue}` )}
     {...props}
   />
@@ -189,7 +190,6 @@ Checkbox.propTypes = {
 }
 
 Checkbox.defaultProps = { storageKey: null, checkedIcon: null, icon: null }
-
 
 const typeComponents = {
   [OPTION_TYPES.dropdown]: Dropdown,

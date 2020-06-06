@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from 'react'
+import React, { useContext, lazy, Suspense, useState } from 'react'
 import {
   Box,
   Tab,
@@ -14,13 +14,13 @@ import { SettingsContext } from '../lib/contexts'
 
 import SettingFactory from './SettingComponent'
 
-import './SettingsMenu.css'
+import './EditorPanel.css'
 
 const ExportEditor = lazy( () => import( './editors/ExportEditor' ) )
 
 const EditorPanel = () => {
   const [ settings, setSettings ] = useContext( SettingsContext )
-  const [ tabName, setTab ] = React.useState( TABS[0].name )
+  const [ tabName, setTab ] = useState( TABS[0].name )
 
   const handleChange = ( _event, value ) => setTab( value )
 
@@ -39,7 +39,7 @@ const EditorPanel = () => {
   } )
 
   return (
-    <div className="settings-menu">
+    <div className="editor-panel">
 
       <Tabs
         orientation="vertical"

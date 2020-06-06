@@ -1,11 +1,11 @@
-.settings-menu {
+.editor-panel {
   display: flex;
   flex-grow: 1;
   height: 100vh;
   min-width: fit-content;
 }
 
-.settings-menu .pane {
+.editor-panel .pane {
   width: 75%;
   overflow-y: auto;
   overflow-x: hidden;
