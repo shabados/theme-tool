@@ -14,7 +14,7 @@ import { SettingsContext } from '../lib/contexts'
 
 import SettingFactory from './SettingComponent'
 
-import './SettingsMenu.css'
+import './EditorPanel.css'
 
 const ExportEditor = lazy( () => import( './editors/ExportEditor' ) )
 
@@ -39,7 +39,7 @@ const EditorPanel = () => {
   } )
 
   return (
-    <div className="settings-menu">
+    <div className="editor-panel">
 
       <Tabs
         orientation="vertical"
