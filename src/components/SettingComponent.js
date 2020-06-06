@@ -5,6 +5,7 @@ import {
   func,
   bool,
   string,
+  number,
   arrayOf,
   oneOfType,
 } from 'prop-types'
@@ -25,7 +26,7 @@ import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
 
-export const Toggle = ( { value, onChange, ...props } ) => (
+export const Toggle = ( { initial, value, onChange, ...props } ) => (
   <Switch
     className={classNames( 'toggle', { checked: JSON.parse( value ) } )}
     checked={JSON.parse( value )}
@@ -35,25 +36,34 @@ export const Toggle = ( { value, onChange, ...props } ) => (
 )
 
 Toggle.propTypes = {
+  initial: bool.isRequired,
   value: oneOfType( [ string, bool ] ).isRequired,
   onChange: func.isRequired,
 }
+
 
 export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
   <MaterialSlider
     className="slider"
     valueLabelDisplay="auto"
-    value={value.split( units )[0]}
-    onChange={( _event, newValue ) => onChange( `${newValue}${units}` )}
+    value={+( units ? value.split( units )[0] : value )}
+    onChange={( _event, newValue ) => onChange( units ? `${newValue}${units}` : `${newValue}` )}
     {...props}
   />
 )
 
+
 Slider.propTypes = {
-  value: string.isRequired,
-  units: string.isRequired,
-  storageKey: string.isRequired,
+  value: oneOfType( [ string, number ] ).isRequired,
+  units: string,
+  storageKey: string,
   onChange: func.isRequired,
+}
+
+Slider.defaultProps = {
+  storageKey: null,
+  units: null,
+
 }
 
 export const Dropdown = ( { name, storageKey, value, values, onChange, ...props } ) => (
@@ -74,11 +84,13 @@ export const Dropdown = ( { name, storageKey, value, values, onChange, ...props 
 
 Dropdown.propTypes = {
   name: string.isRequired,
-  storageKey: string.isRequired,
+  storageKey: string,
   values: arrayOf( any ).isRequired,
   onChange: func.isRequired,
-  value: string.isRequired,
+  value: oneOfType( [ string, number ] ).isRequired,
 }
+
+Dropdown.defaultProps = { storageKey: null }
 
 export const Button = ( { className, ...props } ) => (
   <MaterialButton
@@ -150,9 +162,11 @@ export const PopoverColorPicker = ( { name, value, storageKey, onChange, ...prop
 PopoverColorPicker.propTypes = {
   value: string.isRequired,
   name: string.isRequired,
-  storageKey: string.isRequired,
+  storageKey: string,
   onChange: func.isRequired,
 }
+
+PopoverColorPicker.defaultProps = { storageKey: null }
 
 
 const typeComponents = {

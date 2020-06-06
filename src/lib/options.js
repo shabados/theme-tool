@@ -22,11 +22,11 @@ const FLEX = [
 ]
 
 const RATIOS = [
-  { name: '16:9 (standard)', value: '56.25%' },
-  { name: '9:16 (vertical)', value: '‭177.7777777777778‬%' },
-  { name: '1.91:1 (horizontal)', value: '‭52.35602094240838‬%' },
-  { name: '4:5 (portrait)', value: '125%' },
-  { name: '1:1 (square)', value: '100%' },
+  { name: '16:9 (standard)', value: 16 / 9 },
+  { name: '9:16 (vertical)', value: 9 / 16 },
+  { name: '1.91:1 (horizontal)', value: 1.91 },
+  { name: '4:5 (portrait)', value: 4 / 5 },
+  { name: '1:1 (square)', value: 1 },
 ]
 
 // Unique symbols for each option type
@@ -77,13 +77,13 @@ export const OPTION_TYPES = {
  * { name: false
  *   type: symbol
  *   storageKey: string
- *   intial: any
+ *   initial: any
  * }
  *
  */
 
 const PREVIEW_OPTIONS = {
-  aspectRatio: { name: 'Aspect Ratio', type: OPTION_TYPES.dropdown, values: RATIOS, storageKey: '--aspect-ratio', initial: '56.25%' },
+  aspectRatio: { name: 'Aspect Ratio', type: OPTION_TYPES.dropdown, values: RATIOS, storageKey: 'aspectRatio', initial: RATIOS[0].value },
   larivaarGurbani: { name: 'Larivaar Gurbani', type: OPTION_TYPES.toggle, storageKey: 'larivaarGurbani', initial: false },
   larivaarAssist: { name: 'Larivaar Assist', type: OPTION_TYPES.toggle, storageKey: 'larivaarAssist', initial: false },
   englishTranslation: { name: 'English Translation', type: OPTION_TYPES.toggle, storageKey: 'englishTranslation', initial: false },
@@ -99,7 +99,7 @@ const OVERLAY_OPTIONS = {
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
   width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
   overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
-  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
+  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
   horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
   backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool#8
@@ -124,11 +124,12 @@ const TEXT_OPTIONS = {
   // backgroundTextSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-text-background-size', initial: 'contain' },
 
   // Font
-  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8vh' },
+  primaryFontSize: { name: 'Primary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-primary-font-size', units: 'vh', initial: '4.8' },
   primaryFontColor: { name: 'Primary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-font-color', initial: '#ffd22b', disableAlpha: true },
   primaryLarivaarAssistColor: { name: 'Primary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-larivaar-assist-color', initial: '#812929', disableAlpha: true },
   primaryDropColor: { name: 'Primary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-primary-drop-color', initial: 'none', disableAlpha: true },
-  secondaryFontSize: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-secondary-font-size', units: 'vh', initial: 'calc( var(--overlay-primary-font-size) * 0.6 )' },
+  secondaryFontSlider: { name: 'Secondary Font Size', type: OPTION_TYPES.slider, min: 30, max: 100, step: 1, storageKey: '--secondary-font-slider', initial: '60' },
+  secondaryFontSize: { name: false, storageKey: '--overlay-secondary-font-size', initial: 'calc( var(--overlay-primary-font-size) * var(--secondary-font-slider)/100)' },
   secondaryFontColor: { name: 'Secondary Font Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-font-color', initial: '#FFFFFF', disableAlpha: true },
   secondaryLarivaarAssistColor: { name: 'Secondary Larivaar Assist Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-larivaar-assist-color', initial: '#eaffff', disableAlpha: true },
   secondaryDropColor: { name: 'Secondary Drop Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-secondary-drop-color', initial: 'none', disableAlpha: true },
