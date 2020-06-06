@@ -3,6 +3,8 @@ import {
   faSquare,
   faTextWidth,
   faWindowRestore,
+  faUnlock,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons'
 
 const TEXT_ALIGN = [
@@ -35,7 +37,7 @@ export const OPTION_TYPES = {
   toggle: Symbol( 'Toggle' ),
   slider: Symbol( 'Slider' ),
   popoverColorPicker: Symbol( 'Popover Color Picker' ),
-  lockButton: Symbol( 'Lock Button' ),
+  checkbox: Symbol( 'Checkbox' ),
 }
 
 /**
@@ -102,7 +104,7 @@ const OVERLAY_OPTIONS = {
   overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
   horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 20, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
   verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
-  lockOverlayPadding: { name: 'Lock Padding', type: OPTION_TYPES.lockButton, storageKey: 'lockOverlayPadding', initial: true, parent: '--overlay-horizontal-padding', child: '--overlay-vertical-padding', parentUnits: 'vw', childUnits: 'vh' },
+  lockOverlayPadding: { name: 'Lock Padding', type: OPTION_TYPES.checkbox, storageKey: 'lockOverlayPadding', icon: faUnlock, checkedIcon: faLock, initial: true },
   backgroundColor: { name: 'Background Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool#8
   // backgroundSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-background-size', initial: 'cover' },

@@ -8,10 +8,11 @@ import {
   number,
   arrayOf,
   oneOfType,
+  shape,
 } from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquare, faLock, faUnlock } from '@fortawesome/free-solid-svg-icons'
+import { faSquare } from '@fortawesome/free-solid-svg-icons'
 
 import {
   Select,
@@ -20,13 +21,12 @@ import {
   MenuItem,
   Slider as MaterialSlider,
   Button as MaterialButton,
-  Checkbox,
+  Checkbox as MaterialCheckbox,
 } from '@material-ui/core'
 
 import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
-import { writeCssToDom } from '../lib/utils'
 
 export const Toggle = ( { value, onChange, ...props } ) => (
   <Switch
@@ -169,42 +169,26 @@ PopoverColorPicker.propTypes = {
 
 PopoverColorPicker.defaultProps = { storageKey: null }
 
-export const LockButton = ( { name, value, storageKey, onChange, parent, child, childUnits, parentUnits, ...props } ) => {
-  const parentValue = window.localStorage.getItem( parent )
+export const Checkbox = ( { name, value, storageKey, icon, checkedIcon, onChange, ...props } ) => (
+  <MaterialCheckbox
+    icon={( <FontAwesomeIcon icon={icon} /> )}
+    checkedIcon={( <FontAwesomeIcon icon={checkedIcon} /> )}
+    checked={JSON.parse( value )}
+    onChange={( { target: { checked } } ) => onChange( checked )}
+    {...props}
+  />
+)
 
-  const lockValues = event => {
-    onChange( event.target.checked )
-    if ( event.target.checked ) {
-      const childValue = `${parentValue.split( parentUnits )[0]}${childUnits}` || `parentValue${childUnits}`
-      writeCssToDom( child, childValue )
-      window.localStorage.setItem( child, childValue )
-    }
-  }
-
-  return (
-    <Checkbox
-      icon={( <FontAwesomeIcon icon={faUnlock} /> )}
-      checkedIcon={( <FontAwesomeIcon icon={faLock} /> )}
-      checked={JSON.parse( value )}
-      onChange={event => lockValues( event )}
-      {...props}
-    />
-
-  )
-}
-
-LockButton.propTypes = {
+Checkbox.propTypes = {
   value: string.isRequired,
   name: string.isRequired,
   storageKey: string,
   onChange: func.isRequired,
-  parent: string.isRequired,
-  child: string.isRequired,
-  childUnits: string.isRequired,
-  parentUnits: string.isRequired,
+  icon: shape( {} ),
+  checkedIcon: shape( {} ),
 }
 
-LockButton.defaultProps = { storageKey: null }
+Checkbox.defaultProps = { storageKey: null, checkedIcon: null, icon: null }
 
 
 const typeComponents = {
@@ -212,7 +196,7 @@ const typeComponents = {
   [OPTION_TYPES.toggle]: Toggle,
   [OPTION_TYPES.slider]: Slider,
   [OPTION_TYPES.popoverColorPicker]: PopoverColorPicker,
-  [OPTION_TYPES.lockButton]: LockButton,
+  [OPTION_TYPES.checkbox]: Checkbox,
 }
 
 export default type => typeComponents[type]
