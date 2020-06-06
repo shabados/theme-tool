@@ -33,16 +33,37 @@ const darkTheme = createMuiTheme( {
   tonalOffset: 0.2,
 } )
 
+const commitSettings = settings => {
+  Object.entries( settings ).forEach( ( [ name, value ] ) => {
+    const { storageKey } = OPTIONS[name]
+    writeCss( storageKey, value )
+    window.localStorage.setItem( storageKey, value )
+  } )
+}
+
+const applyLockPadding = ( settings, updatedSettings ) => {
+  const { horizontalPadding } = updatedSettings
+  const { lockOverlayPadding } = { ...settings, ...updatedSettings }
+
+  if ( !lockOverlayPadding ) return updatedSettings
+
+  const verticalPadding = horizontalPadding || settings.horizontalPadding
+  commitSettings( { verticalPadding } )
+
+  return {
+    ...updatedSettings,
+    // Sync the sliders up but using the same numeric value by giving it the wrong unit
+    verticalPadding: verticalPadding.replace( OPTIONS.horizontalPadding.units, OPTIONS.verticalPadding.units ),
+  }
+}
 
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
-    Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
-      const { storageKey } = OPTIONS[name]
-      writeCss( storageKey, value )
-      window.localStorage.setItem( storageKey, value )
-    } )
+    commitSettings( updatedSettings )
 
-    return { ...settings, ...updatedSettings }
+    const nextSettings = applyLockPadding( settings, updatedSettings )
+
+    return { ...settings, ...nextSettings }
   }, {} )
 
   const [ { aspectRatio }, setSettings ] = settingsState
