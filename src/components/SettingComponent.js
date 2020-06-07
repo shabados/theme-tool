@@ -65,7 +65,6 @@ Slider.propTypes = {
 Slider.defaultProps = {
   storageKey: null,
   units: null,
-
 }
 
 export const Dropdown = ( { name, storageKey, value, values, onChange, ...props } ) => (
