@@ -192,8 +192,8 @@ export const DROP_COLORS = [
   OPTIONS.secondaryDropColor.storageKey,
 ]
 
-export const LOCK_BUTTON = [
-  OPTIONS.verticalPadding,
-  OPTIONS.windowVerticalPadding,
-  OPTIONS.textVerticalPadding,
+export const LOCK_PROPERTIES = [
+  [ 'lockOverlayPadding', [ 'horizontalPadding', 'verticalPadding' ] ],
+  [ 'lockWindowPadding', [ 'windowHorizontalPadding', 'windowVerticalPadding' ] ],
+  [ 'lockTextPadding', [ 'textHorizontalPadding', 'textVerticalPadding' ] ],
 ]

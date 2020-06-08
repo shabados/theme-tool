@@ -5,7 +5,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage, writeCss } from './lib/utils'
-import { OPTIONS } from './lib/options'
+import { OPTIONS, LOCK_PROPERTIES } from './lib/options'
 import MOOL_MANTAR from './lib/mool-mantar'
 
 import './App.css'
@@ -40,21 +40,23 @@ const commitSettings = settings => {
   } )
 }
 
-const applyLockPadding = ( settings, updatedSettings ) => {
-  const { horizontalPadding } = updatedSettings
-  const { lockOverlayPadding } = { ...settings, ...updatedSettings }
+const applyLockPadding = ( settings, updatedSettings ) => LOCK_PROPERTIES.reduce( ( acc, [ lockName, [ horizontalName, verticalName ] ] ) => {
+  const { [horizontalName]: horizontalPadding } = updatedSettings
+  const { [lockName]: lockPadding } = { ...settings, ...updatedSettings }
 
-  if ( !lockOverlayPadding ) return updatedSettings
+  OPTIONS[verticalName].disabled = !!lockPadding
+  if ( !lockPadding ) return updatedSettings
 
   const verticalPadding = horizontalPadding || settings.horizontalPadding
-  commitSettings( { verticalPadding } )
+  commitSettings( { [verticalName]: verticalPadding } )
 
   return {
+    ...acc,
     ...updatedSettings,
     // Sync the sliders up but using the same numeric value by giving it the wrong unit
-    verticalPadding: verticalPadding.replace( OPTIONS.horizontalPadding.units, OPTIONS.verticalPadding.units ),
+    [verticalName]: verticalPadding.replace( OPTIONS[horizontalName].units, OPTIONS[verticalName].units ),
   }
-}
+}, {} )
 
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
