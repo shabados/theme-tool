@@ -124,7 +124,6 @@ export const PopoverColorPicker = ( { name, value, storageKey, onChange, ...prop
 
   return (
     <div>
-
       <FontAwesomeIcon
         icon={faSquare}
         onClick={handleClick}
@@ -170,13 +169,16 @@ PopoverColorPicker.propTypes = {
 PopoverColorPicker.defaultProps = { storageKey: null }
 
 export const Checkbox = ( { name, value, storageKey, icon, checkedIcon, onChange, ...props } ) => (
-  <MaterialCheckbox
-    icon={( <FontAwesomeIcon icon={icon} /> )}
-    checkedIcon={( <FontAwesomeIcon icon={checkedIcon} /> )}
-    checked={JSON.parse( value )}
-    onChange={( { target: { checked } } ) => onChange( checked )}
-    {...props}
-  />
+  <div>
+    <MaterialCheckbox
+      icon={( <FontAwesomeIcon icon={icon} /> )}
+      checkedIcon={( <FontAwesomeIcon icon={checkedIcon} /> )}
+      checked={JSON.parse( value )}
+      onChange={( { target: { checked } } ) => onChange( checked )}
+      size=","
+      {...props}
+    />
+  </div>
 )
 
 Checkbox.propTypes = {
