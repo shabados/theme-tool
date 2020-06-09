@@ -58,14 +58,14 @@ const ExportEditor = () => {
       </div>
 
       <div className="option">
-        <Button color="primary" onClick={saveFile} className="option-label">
+        <Button color="secondary" onClick={saveFile}>
           Save
         </Button>
       </div>
 
       <div className="option">
 
-        <Button color="primary" onClick={handleClickOpen} className="option-label">
+        <Button color="secondary" onClick={handleClickOpen}>
           Reset to defaults
         </Button>
 
@@ -90,7 +90,7 @@ const ExportEditor = () => {
 
           <DialogActions>
 
-            <Button onClick={resetEditor} color="secondary">
+            <Button onClick={resetEditor} color="primary">
               Reset
             </Button>
 

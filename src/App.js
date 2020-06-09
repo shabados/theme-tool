@@ -25,7 +25,7 @@ const darkTheme = createMuiTheme( {
       main: '#DCCDA2',
     },
     secondary: {
-      main: '#DCCDA2',
+      main: '#693E4B',
     },
   },
   contrastThreshold: 3,
