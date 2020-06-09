@@ -42,7 +42,7 @@ const ExportEditor = () => {
         id="standard-basic"
         label="Theme Name"
         defaultValue={themeName}
-        onClick={( { target } ) => target.select()}
+        onFocus={( { target } ) => target.select()}
         onChange={( { target: { value } } ) => {
           // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
           // Else User given string
