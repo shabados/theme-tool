@@ -16,6 +16,7 @@
   background-repeat: no-repeat;
   background-position: var(--overlay-background-position);
   text-align: center; /* centers overlay-line when in "windowed" mode */
+  box-sizing: border-box;
 }
 
 .overlay-line {
