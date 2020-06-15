@@ -3,6 +3,8 @@ import {
   faSquare,
   faTextWidth,
   faWindowRestore,
+  faUnlock,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons'
 
 const TEXT_ALIGN = [
@@ -35,6 +37,7 @@ export const OPTION_TYPES = {
   toggle: Symbol( 'Toggle' ),
   slider: Symbol( 'Slider' ),
   popoverColorPicker: Symbol( 'Popover Color Picker' ),
+  checkbox: Symbol( 'Checkbox' ),
 }
 
 /**
@@ -75,9 +78,17 @@ export const OPTION_TYPES = {
  *
  * Skip Render
  * { name: false
- *   type: symbol
  *   storageKey: string
  *   initial: any
+ * }
+ *
+ * Lock Button
+ * {  name: String
+ *    type: symbol
+ *    storageKey: String
+ *    icon: Icon
+ *    checkedIcon: Icon
+ *    initial: Boolean
  * }
  *
  */
@@ -97,19 +108,20 @@ const PREVIEW_OPTIONS = {
 const OVERLAY_OPTIONS = {
   flexJustification: { name: 'Justification', type: OPTION_TYPES.dropdown, values: FLEX, storageKey: '--overlay-flex-justification', initial: 'flex-start' },
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
-  width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
-  overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
-  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0' },
-  horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
-  backgroundColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
+  width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--overlay-width', initial: '100', units: '%' },
+  horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 20, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
+  lockOverlayPadding: { name: 'Lock Padding', type: OPTION_TYPES.checkbox, storageKey: 'lockOverlayPadding', icon: faUnlock, checkedIcon: faLock, initial: true },
+  verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0', disabled: true },
+  backgroundColor: { name: 'Background Color', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-background-color', initial: '#000' },
   // Need to implement theme-tool#8
   // backgroundSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-background-size', initial: 'cover' },
 }
 
 const WINDOW_OPTIONS = {
   windowDisplay: { name: 'Display', type: OPTION_TYPES.dropdown, values: [ { name: 'Flex', value: 'flex' }, { name: 'Inline Block', value: 'inline-block' } ], storageKey: '--overlay-window-display', initial: 'flex' },
-  windowVerticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-window-vertical-padding', units: 'vh', initial: '0' },
-  windowHorizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-window-horizontal-padding', units: 'vw', initial: '0' },
+  windowHorizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 80, step: 1, storageKey: '--overlay-window-horizontal-padding', units: 'vw', initial: '0' },
+  lockWindowPadding: { name: 'Lock Padding', type: OPTION_TYPES.checkbox, storageKey: 'lockWindowPadding', icon: faUnlock, checkedIcon: faLock, initial: true },
+  windowVerticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 80, step: 1, storageKey: '--overlay-window-vertical-padding', units: 'vh', initial: '0', disabled: true },
   backgroundWindowColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-window-background-color', initial: 'none' },
   // Need to implement theme-tool #8
   // backgroundWindowSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-window-background-size', initial: 'cover' },
@@ -117,8 +129,9 @@ const WINDOW_OPTIONS = {
 
 const TEXT_OPTIONS = {
   textAlign: { name: 'Alignment', type: OPTION_TYPES.dropdown, values: TEXT_ALIGN, storageKey: '--overlay-text-align', initial: 'center' },
-  textVerticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-text-vertical-padding', units: 'vh', initial: '0' },
   textHorizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-text-horizontal-padding', units: 'vw', initial: '0' },
+  lockTextPadding: { name: 'Lock Padding', type: OPTION_TYPES.checkbox, storageKey: 'lockTextPadding', icon: faUnlock, checkedIcon: faLock, initial: true },
+  textVerticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 10, step: 0.1, storageKey: '--overlay-text-vertical-padding', units: 'vh', initial: '0', disabled: true },
   backgroundTextColor: { name: 'Background Color ', type: OPTION_TYPES.popoverColorPicker, storageKey: '--overlay-text-background-color', initial: 'none' },
   // Need to implement theme-tool #8
   // backgroundTextSize: { name: 'Background Size', type: OPTION_TYPES.dropdown, values: [ { name: 'Cover', value: 'cover' }, { name: 'None', value: 'none' }, { name: 'Contain', value: 'contain' } ], storageKey: '--overlay-text-background-size', initial: 'contain' },
@@ -176,4 +189,10 @@ export const TABS = [
 export const DROP_COLORS = [
   OPTIONS.primaryDropColor.storageKey,
   OPTIONS.secondaryDropColor.storageKey,
+]
+
+export const LOCK_PROPERTIES = [
+  [ 'lockOverlayPadding', [ 'horizontalPadding', 'verticalPadding' ] ],
+  [ 'lockWindowPadding', [ 'windowHorizontalPadding', 'windowVerticalPadding' ] ],
+  [ 'lockTextPadding', [ 'textHorizontalPadding', 'textVerticalPadding' ] ],
 ]
