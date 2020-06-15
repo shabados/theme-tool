@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import classNames from 'classnames'
 import {
   any,
   func,
@@ -28,9 +27,10 @@ import { SketchPicker } from 'react-color'
 
 import { OPTION_TYPES } from '../lib/options'
 
+import './SettingComponent.css'
+
 export const Toggle = ( { initial, value, onChange, ...props } ) => (
   <Switch
-    className={classNames( 'toggle', { checked: JSON.parse( value ) } )}
     checked={JSON.parse( value )}
     onChange={event => onChange( event.target.checked )}
     {...props}
@@ -46,7 +46,6 @@ Toggle.propTypes = {
 
 export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
   <MaterialSlider
-    className="slider"
     valueLabelDisplay="auto"
     value={+( units ? value.split( units )[0] : value )}
     onChange={( _event, newValue ) => onChange( units ? `${newValue}${units}` : `${newValue}` )}
@@ -69,8 +68,6 @@ Slider.defaultProps = {
 
 export const Dropdown = ( { name, storageKey, value, values, onChange, ...props } ) => (
   <Select
-    className="select"
-    MenuProps={{ className: 'select-menu' }}
     value={value}
     onChange={( _event, { key } ) => { onChange( key ) }}
     {...props}
@@ -94,20 +91,11 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = { storageKey: null }
 
 export const Button = ( { className, ...props } ) => (
-  <MaterialButton
-    variant="contained"
-    className={classNames( className, 'button' )}
-    {...props}
-  />
+  <MaterialButton variant="contained" {...props} />
 )
 
-Button.propTypes = {
-  className: string,
-}
-
-Button.defaultProps = {
-  className: null,
-}
+Button.propTypes = { className: string }
+Button.defaultProps = { className: null }
 
 export const PopoverColorPicker = ( { name, value, storageKey, onChange, ...props } ) => {
   const [ anchorEl, setAnchorEl ] = useState( null )
@@ -169,13 +157,12 @@ PopoverColorPicker.propTypes = {
 PopoverColorPicker.defaultProps = { storageKey: null }
 
 export const Checkbox = ( { name, value, storageKey, icon, checkedIcon, onChange, ...props } ) => (
-  <div>
+  <div className="setting-checkbox">
     <MaterialCheckbox
       icon={( <FontAwesomeIcon icon={icon} /> )}
       checkedIcon={( <FontAwesomeIcon icon={checkedIcon} /> )}
       checked={JSON.parse( value )}
       onChange={( { target: { checked } } ) => onChange( checked )}
-      size=","
       {...props}
     />
   </div>
