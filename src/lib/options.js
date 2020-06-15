@@ -108,8 +108,7 @@ const PREVIEW_OPTIONS = {
 const OVERLAY_OPTIONS = {
   flexJustification: { name: 'Justification', type: OPTION_TYPES.dropdown, values: FLEX, storageKey: '--overlay-flex-justification', initial: 'flex-start' },
   height: { name: 'Height', type: OPTION_TYPES.dropdown, values: [ { name: 'Auto', value: 'auto' }, { name: '100', value: '100vh' } ], storageKey: '--overlay-height', initial: 'auto' },
-  width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--width-slider', initial: '100', units: '%' },
-  overlayWidth: { name: false, storageKey: '--overlay-width', initial: 'calc(var(--width-slider) - 2 * var(--overlay-horizontal-padding))' },
+  width: { name: 'Width', type: OPTION_TYPES.slider, min: 1, max: 100, step: 1, storageKey: '--overlay-width', initial: '100', units: '%' },
   horizontalPadding: { name: 'Horizontal Padding', type: OPTION_TYPES.slider, min: 0, max: 20, step: 1, storageKey: '--overlay-horizontal-padding', units: 'vw', initial: '0' },
   lockOverlayPadding: { name: 'Lock Padding', type: OPTION_TYPES.checkbox, storageKey: 'lockOverlayPadding', icon: faUnlock, checkedIcon: faLock, initial: true },
   verticalPadding: { name: 'Vertical Padding', type: OPTION_TYPES.slider, min: 0, max: 75, step: 1, storageKey: '--overlay-vertical-padding', units: 'vh', initial: '0', disabled: true },
