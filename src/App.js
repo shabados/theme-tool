@@ -47,7 +47,7 @@ const applyLockPadding = ( settings, updatedSettings ) => LOCK_PROPERTIES.reduce
   OPTIONS[verticalName].disabled = !!lockPadding
   if ( !lockPadding ) return updatedSettings
 
-  const verticalPadding = horizontalPadding || settings.horizontalPadding
+  const verticalPadding = horizontalPadding || settings[horizontalName]
   commitSettings( { [verticalName]: verticalPadding } )
 
   return {
