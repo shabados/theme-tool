@@ -43,9 +43,10 @@ const ExportEditor = () => {
       <div className="option">
 
         <TextField
-          className="save-text-input"
-          id="standard-basic"
+          className="text-input"
           label="Theme Name"
+          color="secondary"
+          InputProps={{ color: 'secondary' }}
           placeholder={themeName}
           onChange={( { target: { value } } ) => {
             // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
