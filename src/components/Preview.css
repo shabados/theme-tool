@@ -5,7 +5,7 @@
 .overlay {
   padding: calc( var(--overlay-vertical-padding) * var(--vh-factor) ) calc( var(--overlay-horizontal-padding) * var(--vw-factor) );
   display: var(--overlay-window-display);
-  height: var(--overlay-height);
+  height: calc( var(--overlay-height) * var(--vh-factor) );
   width: var(--overlay-width);
   flex-direction: column;
   justify-content: flex-start;
