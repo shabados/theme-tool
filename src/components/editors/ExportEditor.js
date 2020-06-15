@@ -14,8 +14,6 @@ import { timestamp } from '../../lib/utils'
 
 import { Button } from '../SettingComponent'
 
-import './ExportEditor.css'
-
 const ExportEditor = () => {
   const [ settings, setSettings ] = useState( false )
   const [ themeName, setThemeName ] = useState( `Overlay ${timestamp()}` )
@@ -45,8 +43,6 @@ const ExportEditor = () => {
         <TextField
           className="text-input"
           label="Theme Name"
-          color="secondary"
-          InputProps={{ color: 'secondary' }}
           defaultValue={themeName}
           onFocus={( { target } ) => target.select()}
           onChange={( { target: { value } } ) => {
@@ -61,14 +57,14 @@ const ExportEditor = () => {
       </div>
 
       <div className="option">
-        <Button color="secondary" onClick={saveFile}>
+        <Button color="primary" onClick={saveFile}>
           Save
         </Button>
       </div>
 
       <div className="option">
 
-        <Button color="secondary" onClick={handleClickOpen}>
+        <Button color="primary" onClick={handleClickOpen}>
           Reset to defaults
         </Button>
 
