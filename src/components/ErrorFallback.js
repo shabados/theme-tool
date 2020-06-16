@@ -5,6 +5,7 @@ import { Typography, Button, Grid } from '@material-ui/core'
 
 import './ErrorFallback.css'
 import logo from '../assets/images/logo.png'
+import { version } from '../../package.json'
 
 const RELOAD_COUNTDOWN = 10 // 10 second countdown before automatic reload
 
@@ -92,10 +93,15 @@ export const withErrorFallback = Comp => class WithErrorFallback extends Compone
       return (
         <>
           <ErrorFallback error={error} />
+
           <div className="error-fallback-body">
+
             <img src={logo} className="logo" alt="logo" />
-            <h5>ShabadOS Theme Tool</h5>
+
+            <h5>{`ShabadOS Theme Tool v${version}`}</h5>
+
           </div>
+
         </>
       )
     }
