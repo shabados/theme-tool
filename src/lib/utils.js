@@ -72,7 +72,7 @@ export const loadStorage = () => {
  * @param {string} value RGBA
  * https://stackoverflow.com/a/11003212/11321732
  */
-const getColorObject = value => {
+export const getColorObject = value => {
   if ( [ 'none', 'undefined', null ].includes( value ) ) return null
   const [ r, g, b, a ] = value.match( /\d+/g )
   return { r, g, b, a }
