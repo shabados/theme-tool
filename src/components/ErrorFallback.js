@@ -89,6 +89,7 @@ export const withErrorFallback = Comp => class WithErrorFallback extends Compone
 
   render() {
     const { error } = this.state
+
     if ( error ) {
       return (
         <>
@@ -105,7 +106,6 @@ export const withErrorFallback = Comp => class WithErrorFallback extends Compone
         </>
       )
     }
-
 
     return <Comp {...this.props} />
   }
