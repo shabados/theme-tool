@@ -3,9 +3,9 @@ import { string, bool } from 'prop-types'
 
 import { Typography, Button, Grid } from '@material-ui/core'
 
-import './ErrorFallback.css'
-import logo from '../assets/images/logo.png'
 import { version } from '../../package.json'
+import logo from '../assets/images/logo.png'
+import './ErrorFallback.css'
 
 const RELOAD_COUNTDOWN = 10 // 10 second countdown before automatic reload
 
