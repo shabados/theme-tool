@@ -39,5 +39,4 @@ const makeCssFile = () => {
   return generateFile
 }
 
-
 export default makeCssFile

@@ -79,13 +79,11 @@ const ExportEditor = () => {
             Are you sure you want to reset the theme editor?
           </DialogTitle>
 
-
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               You cannot undo this action.
             </DialogContentText>
           </DialogContent>
-
 
           <DialogActions>
 
