@@ -14,7 +14,7 @@
 }
 
 .tabs .MuiTab-root {
-  min-width: unset
+  min-width: unset;
 }
 
 .tabs {
