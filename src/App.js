@@ -2,7 +2,6 @@
 import React, { useReducer, useEffect, lazy, Suspense } from 'react'
 import SplitPane from 'react-split-pane'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import classNames from 'classnames'
 
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage, writeCss } from './lib/utils'
@@ -68,7 +67,7 @@ const App = () => {
     return { ...settings, ...nextSettings }
   }, {} )
 
-  const [ { aspectRatio, backgroundImage }, setSettings ] = settingsState
+  const [ { aspectRatio }, setSettings ] = settingsState
 
   useEffect( () => {
     const initialSettings = Object.entries( OPTIONS ).reduce( ( acc, [ name, { storageKey } ] ) => {
@@ -109,7 +108,7 @@ const App = () => {
 
             <Suspense fallback={<div>Loading...</div>}>
               <RatioBox ratio={aspectRatio}>
-                <div className={classNames( 'editor-overlay', { 'no-image': !backgroundImage } )}>
+                <div className="editor-overlay">
                   <div className="editor-overlay-preview">
 
                     <Suspense fallback={<div>Loading...</div>}>

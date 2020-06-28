@@ -23,12 +23,6 @@
   background-position: center;
 }
 
-.app .editor-overlay.no-image {
-  background-image: url('./assets/images/checkboard.png');
-  background-size: 10%;
-  background-repeat: repeat;
-}
-
 .app .editor-overlay .editor-overlay-preview{
   position: absolute;
   overflow: hidden;

@@ -103,7 +103,6 @@ const PREVIEW_OPTIONS = {
   englishTransliteration: { name: 'English Transliteration', type: OPTION_TYPES.toggle, storageKey: 'englishTransliteration', initial: false },
   hindiTransliteration: { name: 'Hindi Transliteration', type: OPTION_TYPES.toggle, storageKey: 'hindiTransliteration', initial: false },
   urduTransliteration: { name: 'Urdu Transliteration', type: OPTION_TYPES.toggle, storageKey: 'urduTransliteration', initial: false },
-  backgroundImage: { name: 'Background Image', type: OPTION_TYPES.toggle, storageKey: 'bgImage', initial: true },
 }
 
 const OVERLAY_OPTIONS = {
