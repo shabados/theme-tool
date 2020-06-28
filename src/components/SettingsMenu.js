@@ -59,7 +59,7 @@ const EditorPanel = () => {
               // onChange for any setting
               const onChange = value => setSettings( { [optionName]: value } )
 
-              return name && (
+              return (
                 <Box className="option" padding="0.3em 0">
 
                   <Typography className="option-label">{name}</Typography>
