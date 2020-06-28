@@ -130,5 +130,4 @@ const App = () => {
   )
 }
 
-
 export default withErrorFallback( App )

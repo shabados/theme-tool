@@ -13,8 +13,8 @@
   background-color: #F0EDE9;
 }
 
-.tabs .MuiTab-root { 
-  min-width: unset 
+.tabs .MuiTab-root {
+  min-width: unset;
 }
 
 .tabs {
