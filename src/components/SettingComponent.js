@@ -43,6 +43,7 @@ Toggle.propTypes = {
   onChange: func.isRequired,
 }
 
+
 export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
   <MaterialSlider
     valueLabelDisplay="auto"
@@ -51,6 +52,7 @@ export const Slider = ( { value, storageKey, units, onChange, ...props } ) => (
     {...props}
   />
 )
+
 
 Slider.propTypes = {
   value: oneOfType( [ string, number ] ).isRequired,

@@ -90,7 +90,7 @@
   color: var(--overlay-secondary-larivaar-assist-color);
 }
 
-.text {
+.text { 
   display: inline-block;
   padding-left: calc( var(--overlay-text-horizontal-padding) * var(--vw-factor) );
   padding-right: calc( var(--overlay-text-horizontal-padding) * var(--vw-factor) );

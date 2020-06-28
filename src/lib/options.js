@@ -156,6 +156,7 @@ const TEXT_OPTIONS = {
 
 }
 
+
 export const OPTIONS = {
   ...PREVIEW_OPTIONS,
   ...OVERLAY_OPTIONS,
