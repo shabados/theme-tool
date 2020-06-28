@@ -5,7 +5,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage, writeCss } from './lib/utils'
-import { OPTIONS, LOCK_PROPERTIES } from './lib/options'
+import { OPTIONS } from './lib/options'
 import MOOL_MANTAR from './lib/mool-mantar'
 
 import './App.css'
@@ -32,39 +32,16 @@ const darkTheme = createMuiTheme( {
   tonalOffset: 0.2,
 } )
 
-const commitSettings = settings => {
-  Object.entries( settings ).forEach( ( [ name, value ] ) => {
-    const { storageKey } = OPTIONS[name]
-    writeCss( storageKey, value )
-    window.localStorage.setItem( storageKey, value )
-  } )
-}
-
-const applyLockPadding = ( settings, updatedSettings ) => LOCK_PROPERTIES.reduce( ( acc, [ lockName, [ horizontalName, verticalName ] ] ) => {
-  const { [horizontalName]: horizontalPadding } = updatedSettings
-  const { [lockName]: lockPadding } = { ...settings, ...updatedSettings }
-
-  OPTIONS[verticalName].disabled = !!lockPadding
-  if ( !lockPadding ) return updatedSettings
-
-  const verticalPadding = horizontalPadding || settings[horizontalName]
-  commitSettings( { [verticalName]: verticalPadding } )
-
-  return {
-    ...acc,
-    ...updatedSettings,
-    // Sync the sliders up but using the same numeric value by giving it the wrong unit
-    [verticalName]: verticalPadding.replace( OPTIONS[horizontalName].units, OPTIONS[verticalName].units ),
-  }
-}, {} )
 
 const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
-    commitSettings( updatedSettings )
+    Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
+      const { storageKey } = OPTIONS[name]
+      writeCss( storageKey, value )
+      window.localStorage.setItem( storageKey, value )
+    } )
 
-    const nextSettings = applyLockPadding( settings, updatedSettings )
-
-    return { ...settings, ...nextSettings }
+    return { ...settings, ...updatedSettings }
   }, {} )
 
   const [ { aspectRatio }, setSettings ] = settingsState
@@ -90,6 +67,7 @@ const App = () => {
   return (
     <SettingsContext.Provider value={settingsState}>
       <ThemeProvider theme={darkTheme}>
+
         <div className="app">
 
           <SplitPane
@@ -107,22 +85,25 @@ const App = () => {
             </div>
 
             <Suspense fallback={<div>Loading...</div>}>
+
               <RatioBox ratio={aspectRatio}>
                 <div className="editor-overlay">
+
                   <div className="editor-overlay-preview">
 
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <Preview {...( { ...MOOL_MANTAR } )} />
-                    </Suspense>
+                    <Preview {...( { ...MOOL_MANTAR } )} />
 
                   </div>
+
                 </div>
               </RatioBox>
+
             </Suspense>
 
           </SplitPane>
 
         </div>
+
       </ThemeProvider>
     </SettingsContext.Provider>
   )
