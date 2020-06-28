@@ -6,7 +6,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Overlay from './components/Preview'
 import EditorPanel from './components/SettingsMenu'
 import { SettingsContext } from './lib/contexts'
-import { loadCss, loadStorage, writeCss } from './lib/utils'
+import { loadCss, loadStorage } from './lib/utils'
 import { OPTIONS } from './lib/options'
 import MOOL_MANTAR from './lib/mool-mantar'
 
@@ -36,7 +36,8 @@ const App = () => {
   const settingsState = useReducer( ( settings, updatedSettings = {} ) => {
     Object.entries( updatedSettings ).forEach( ( [ name, value ] ) => {
       const { storageKey } = OPTIONS[name]
-      writeCss( storageKey, value )
+
+      if ( storageKey.includes( '--' ) ) document.documentElement.style.setProperty( storageKey, value )
       window.localStorage.setItem( storageKey, value )
     } )
 
