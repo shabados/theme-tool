@@ -18,9 +18,14 @@ const ExportEditor = () => {
 
   const saveFile = () => {
     const link = document.createElement( 'a' )
-    link.href = makeCssFile()
     link.setAttribute( 'download', 'customTheme.css' )
-    link.click()
+    link.href = makeCssFile()
+    document.body.appendChild( link )
+    window.requestAnimationFrame( () => {
+      const event = new MouseEvent( 'click' )
+      link.dispatchEvent( event )
+      document.body.removeChild( link )
+    } )
   }
 
   const handleClickOpen = () => { setSettings( true ) }
