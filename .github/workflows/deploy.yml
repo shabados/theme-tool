@@ -17,7 +17,8 @@ jobs:
           node-version: 12.x
 
       - name: Cache Node.js modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
+        id: cache
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -26,7 +27,7 @@ jobs:
             ${{ runner.OS }}-
 
       - name: Install npm dependencies
-        run: npm i
+        run: npm ci
 
       - name: Run Build
         run: npm run build
