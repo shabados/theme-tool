@@ -1,0 +1,1 @@
+{"version":3,"sources":["RatioBox.css"],"names":[],"mappings":"AAAA,WACE,UAAW,CACX,WACF,CAEA,kBACE,iBAAkB,CAClB,KAAM,CACN,QAAS,CACT,MAAO,CACP,OAAQ,CACR,WACF","file":"7.d4c8d436.chunk.css","sourcesContent":[".ratio-box {\n  width: 100%;\n  height: 100%;\n}\n \n.ratio-box .inner {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n}\n"]}
