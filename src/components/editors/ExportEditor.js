@@ -36,35 +36,29 @@ const ExportEditor = () => {
   }
 
   return (
-    <Box className="pane" p={2}>
+    <Box p={2}>
 
-      <div className="option">
+      <TextField
+        id="standard-basic"
+        label="Theme Name"
+        defaultValue={themeName}
+        onFocus={( { target } ) => target.select()}
+        onChange={( { target: { value } } ) => {
+          // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
+          // Else User given string
+          if ( value.trim() === '' ) setThemeName( `Overlay ${timestamp()}` )
+          else setThemeName( value )
+        }}
+        fullWidth
+      />
 
-        <TextField
-          className="text-input"
-          label="Theme Name"
-          defaultValue={themeName}
-          onFocus={( { target } ) => target.select()}
-          onChange={( { target: { value } } ) => {
-            // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
-            // Else User given string
-            if ( value.trim() === '' ) setThemeName( `Overlay ${timestamp()}` )
-            else setThemeName( value )
-          }}
-          fullWidth
-        />
+      <Button onClick={saveFile}>
+        Save
+      </Button>
 
-      </div>
+      <div>
 
-      <div className="option">
-        <Button color="primary" onClick={saveFile}>
-          Save
-        </Button>
-      </div>
-
-      <div className="option">
-
-        <Button color="primary" onClick={handleClickOpen}>
+        <Button variant="outlined" color="primary" onClick={handleClickOpen}>
           Reset to defaults
         </Button>
 
@@ -74,6 +68,7 @@ const ExportEditor = () => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
+
 
           <DialogTitle id="alert-dialog-title">
             Are you sure you want to reset the theme editor?
@@ -89,7 +84,7 @@ const ExportEditor = () => {
 
           <DialogActions>
 
-            <Button onClick={resetEditor} color="primary">
+            <Button onClick={resetEditor} color="secondary">
               Reset
             </Button>
 
@@ -100,8 +95,8 @@ const ExportEditor = () => {
           </DialogActions>
 
         </Dialog>
-      </div>
 
+      </div>
     </Box>
   )
 }

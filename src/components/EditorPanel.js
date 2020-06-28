@@ -57,18 +57,19 @@ const EditorPanel = () => {
 
       </Tabs>
 
-      <ThemeProvider theme={lightTheme}>
+      <Suspense fallback={<div>loading...</div>}>
+        {tabName === 'Export' && <ExportEditor />}
+      </Suspense>
 
-        <Suspense fallback={<div>loading...</div>}>
-          {tabName === 'Export' && <ExportEditor />}
-        </Suspense>
+      {TABS
+        .filter( ( { name } ) => name === tabName )
+        .map( ( { options } ) => (
 
-        {TABS
-          .filter( ( { name } ) => name === tabName )
-          .map( ( { name: tab, options } ) => (
-            <Box key={tab} className="pane" p={2}>
+          <ThemeProvider key={options} theme={lightTheme}>
+            <Box className="pane" p={2}>
+
               {options.map( optionName => {
-              // Grab the actual option
+                // Grab the actual option
                 const { name, type, storageKey, ...props } = OPTIONS[optionName]
 
                 // Get the component for the given type
@@ -95,9 +96,8 @@ const EditorPanel = () => {
               } )}
 
             </Box>
-          ) )}
-
-      </ThemeProvider>
+          </ThemeProvider>
+        ) )}
 
     </div>
   )
