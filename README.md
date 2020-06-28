@@ -12,7 +12,7 @@ Theme Generator for Shabad OS [Desktop](https://github.com/ShabadOS/desktop)
 
 ## Introduction
 
-Shabad OS Theme Tool is an open source project with ongoing development, project management, and marketing made possible entirely by the support and dedication of unpaid volunteers.
+The Shabad OS Theme Tool is an open source project with ongoing development, project management, and marketing made possible entirely by the support and dedication of unpaid volunteers.
 
 This app can be used to design themes that can be used in live captions for Shabad OS Desktop.
 

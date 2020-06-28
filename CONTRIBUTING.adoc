@@ -38,7 +38,7 @@ You'll need the following:
 * https://git-scm.com/[Git]
 * https://nodejs.org/en/[Node.JS], x64, version `>= 12.x`
 
-We currently use precompiled binaries. If we need to compile native Node modules in the future, we would include the following prerequisites. The following instructions are not required to build, run, package, or distribute Shabad OS for desktop.
+We currently use precompiled binaries. If we need to compile native Node modules in the future, we would include the following prerequisites. The following instructions are not required to build, run, package, or distribute the Shabad OS Theme Tool.
 
 .See prerequisites for compile tool chain
 [%collapsible]
