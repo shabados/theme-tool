@@ -8,7 +8,6 @@ import { SettingsContext } from './lib/contexts'
 import { loadCss, loadStorage, writeCss } from './lib/utils'
 import { OPTIONS, LOCK_PROPERTIES } from './lib/options'
 import MOOL_MANTAR from './lib/mool-mantar'
-import { withErrorFallback } from './components/ErrorFallback'
 
 import './App.css'
 
@@ -131,4 +130,4 @@ const App = () => {
 }
 
 
-export default withErrorFallback( App )
+export default App
