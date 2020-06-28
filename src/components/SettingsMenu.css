@@ -1,8 +1,8 @@
-.settings-menu {
-  display: flex;
-  flex-grow: 1;
-  height: 100vh;
-  min-width: fit-content;
+.settings-menu{
+    display: flex;
+    flex-grow: 1;
+    height: 100vh;
+    min-width: fit-content;
 }
 
 .settings-menu .pane {
@@ -10,19 +10,19 @@
 }
 
 .tabs .MuiTab-root { 
-  min-width: unset 
+    min-width: unset 
 }
 
-.tabs {
-  border-right: 2px solid rgba(230, 215, 215, 0.521);
+.tabs { 
+    border-right: 2px solid rgba(230, 215, 215, 0.521);
 }
 
 .option {
-  display: flex;
-  min-width: fit-content;
+    display: flex;
+    min-width: fit-content;
 }
 
-.option .option-label {
-  padding-top: 5px;
-  padding-right: 10px;
+.option-label {
+    padding-top: 5px;
+    padding-right: 10px;
 }
