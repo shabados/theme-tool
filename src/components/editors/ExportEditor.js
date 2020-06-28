@@ -41,15 +41,13 @@ const ExportEditor = () => {
       <TextField
         id="standard-basic"
         label="Theme Name"
-        defaultValue={themeName}
-        onFocus={( { target } ) => target.select()}
+        placeholder={themeName}
         onChange={( { target: { value } } ) => {
           // Empty string then set default (Overlay 2020-05-21 HH_MM_SS)
           // Else User given string
           if ( value.trim() === '' ) setThemeName( `Overlay ${timestamp()}` )
           else setThemeName( value )
         }}
-        fullWidth
       />
 
       <Button onClick={saveFile}>
