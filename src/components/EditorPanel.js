@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense, useState } from 'react'
+import { useContext, lazy, Suspense, useState } from 'react'
 import {
   Box,
   Tab,

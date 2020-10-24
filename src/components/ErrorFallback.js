@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import { Component, useState, useEffect } from 'react'
 import { string, bool } from 'prop-types'
 
 import { Typography, Button, Grid } from '@material-ui/core'

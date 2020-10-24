@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { node, number } from 'prop-types'
 
 import useWindowResize from '../hooks/use-window-size'
