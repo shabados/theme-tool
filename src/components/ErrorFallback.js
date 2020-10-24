@@ -80,7 +80,8 @@ ErrorFallback.defaultProps = {
 
 export default ErrorFallback
 
-export const withErrorFallback = Comp => class WithErrorFallback extends Component {
+export const withErrorFallback = Comp => ( class WithErrorFallback extends Component {
+  // eslint-disable-next-line
   state = { error: null }
 
   static getDerivedStateFromError( error ) {
@@ -109,4 +110,4 @@ export const withErrorFallback = Comp => class WithErrorFallback extends Compone
 
     return <Comp {...this.props} />
   }
-}
+} )

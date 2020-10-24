@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-  any,
   func,
   bool,
   string,
@@ -72,7 +71,7 @@ export const Dropdown = ( { name, storageKey, value, values, onChange, ...props 
   >
 
     {values.map(
-      ( { name, value } ) => <MenuItem key={value} value={value}>{name || value}</MenuItem>,
+      ( { name: tempName, value: tempValue } ) => <MenuItem key={tempValue} value={tempValue}>{tempName || tempValue}</MenuItem>,
     )}
 
   </Select>
@@ -81,7 +80,7 @@ export const Dropdown = ( { name, storageKey, value, values, onChange, ...props 
 Dropdown.propTypes = {
   name: string.isRequired,
   storageKey: string,
-  values: arrayOf( any ).isRequired,
+  values: arrayOf( shape( {} ) ).isRequired,
   onChange: func.isRequired,
   value: oneOfType( [ string, number ] ).isRequired,
 }

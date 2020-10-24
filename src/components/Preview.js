@@ -28,9 +28,11 @@ const Overlay = ( {
 } ) => {
   const [ settings ] = useContext( SettingsContext )
   const line = partitionLine( gurmukhi )
-    .map( ( line, lineIndex ) => (
+    .map( ( lineArray, lineIndex ) => (
+      // eslint-disable-next-line react/no-array-index-key
       <span key={lineIndex}>
-        {line.map( ( { word, type }, i ) => <span key={`${word}-${type}-${i}`} className={classNames( type, 'word' )}>{word}</span> )}
+        {/* eslint-disable-next-line react/no-array-index-key */}
+        {lineArray.map( ( { word, type }, i ) => <span key={`${word}-${type}-${i}`} className={classNames( type, 'word' )}>{word}</span> )}
       </span>
     ) )
 
@@ -78,6 +80,7 @@ const Overlay = ( {
 
             <span className="text">
               {classifyWords( transliteration, true ).map(
+                // eslint-disable-next-line react/no-array-index-key
                 ( { word, type }, i ) => <span key={`${word}-${type}-${i}`} className={classNames( type, 'word' )}>{word}</span>,
               )}
             </span>
