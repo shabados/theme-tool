@@ -9,23 +9,23 @@
   "plugins": [
     "react"
   ],
-    "rules": {
+  "rules": {
     "array-bracket-spacing": [
-        "error",
-        "always"
+      "error",
+      "always"
     ],
     "arrow-parens": [
-        "error",
-        "as-needed",
-        {
+      "error",
+      "as-needed",
+      {
         "requireForBlockBody": false
-        }
+      }
     ],
     "react/jsx-filename-extension": 0,
     "react/jsx-props-no-spreading": 0,
-    "react/object-curly-newline":0,
+    "react/object-curly-newline": 0,
     "import/prefer-default-export": 0,
-    "max-len":0,
+    "max-len": 0,
     "object-curly-newline": [
       "error",
       {
@@ -33,21 +33,24 @@
       }
     ],
     "space-in-parens": [
-        "error",
-        "always",
-        {
-          "exceptions": [
-            "empty"
-          ]
-        }
+      "error",
+      "always",
+      {
+        "exceptions": [
+          "empty"
+        ]
+      }
     ],
     "semi": [
-        "error",
-        "never"
-      ],
-      "func-names": [
-        "error",
-        "never"
-      ]
-    }
+      "error",
+      "never"
+    ],
+    "func-names": [
+      "error",
+      "never"
+    ],
+    // Rules are no longer necessary React v17
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
 }
