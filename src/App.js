@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useReducer, useEffect, lazy, Suspense } from 'react'
+import { useReducer, useEffect, lazy, Suspense } from 'react'
 import SplitPane from 'react-split-pane'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import classNames from 'classnames'
