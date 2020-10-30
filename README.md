@@ -75,7 +75,7 @@ If you're interested in contributing to the source code of Theme Tool, then plea
 
 ## People
 
-The original author and current lead maintainer is Saihaj Singh ([@saihaj](https://github.com/saihaj)).
+The original author and current lead maintainer is Saihajpreet Singh ([@saihaj](https://github.com/saihaj)).
 
 "Thank you!" to [all the volunteers][contributor-url] who've contributed to Theme Tool.
 
