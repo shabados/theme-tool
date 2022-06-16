@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/ShabadOS/theme-tool/issues"
   },
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "homepage": "https://themes.shabados.com",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
