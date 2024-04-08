@@ -2,28 +2,21 @@
 
 Overlay generator for Shabad OS Presenter. [Create a custom live stream overlay >](https://themes.shabados.com/)
 
-[![Build and Deploy](https://github.com/shabados/theme-tool/actions/workflows/deploy.yml/badge.svg?branch=master)](https://github.com/shabados/theme-tool/actions/workflows/deploy.yml)
-<a href="https://vercel.com/?utm_source=ShabadOS&utm_campaign=oss">
-<img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" height="20" alt="Powered by Vercel"/>
-</a>
-
 ## About
 
-This web app allows users to customize and generate overlays in Shabad OS Presenter. Overlays are in sync with the presenter, so what is displayed there will also show up in the overlay. Overlays should be used in live streaming software to add gurbani and/or english, hindi, punjabi translations / pronunciations.
+This web app allows users to customize and generate overlays in Shabad OS Presenter. The overlay is synced in Presenter, so what is displayed on the projector will also show up in the overlay. Overlays can be used in live streaming software to add gurbani and/or english, hindi, punjabi translations / pronunciations.
 
 See:
 
-- [Installing Shabad OS Presenter](https://docs.shabados.com/presenter/guides/installing-shabad-os-presenter)
-- [Configuring Live Stream Captions](https://docs.shabados.com/presenter/guides/configuring-live-stream-captions)
-- [Importing an overlay theme](https://docs.shabados.com/presenter/guides/importing-an-overlay-theme)
+- [Install Shabad OS Presenter](https://www.shabados.com/support/install-shabad-os-presenter/)
+- [Connect Your Live Stream With Shabad OS](https://www.shabados.com/support/add-bani-captions-to-a-live-stream/)
+- [Import an Overlay Theme](https://www.shabados.com/support/import-an-overlay-theme/)
 
 ### Features
 
-- Customization of the:
-  - Overlay size and position
-  - Text size, color, and shadows
-- Preview for various platforms including TVs, Facebook, Instagram, and alternate YouTube resolutions
-- Overlay generator / file export, to be used in Shabad OS Presenter
+- Edit size, positioning, text, color, and shadows for the Overlay
+- Preview various platforms (e.g. TVs, Facebook, and Instagram)
+- Generate `.css` files for import in Shabad OS Presenter
 
 ### Screenshots
 
@@ -41,7 +34,7 @@ See:
 
 ## Community
 
-The easiest way to communicate is via [GitHub issues](https://github.com/shabados/viewer/issues). Please search for similar issues regarding your concerns before opening a new issue.
+The easiest way to communicate is via [GitHub issues](https://github.com/shabados/theme-tool/issues). Please search for similar issues regarding your concerns before opening a new issue.
 
 Get organization updates for Shabad OS by following us on [Instagram](https://www.instagram.com/shabad_os/) and [Twitter](https://twitter.com/shabad_os/). We also invite you to join us on our public chat server hosted on [Slack](https://chat.shabados.com/).
 
@@ -49,7 +42,11 @@ Our intention is to signal a safe open-source community. Please help us foster a
 
 If you have a concern that doesn't warrant opening a GitHub issue, please reach out to us:
 
-Saihajpreet Singh, Author, Maintainer: [@saihaj](https://github.com/saihaj)
+Harjot Singh, Organization Lead: [@Harjot1Singh](https://github.com/Harjot1Singh)
+
+Saihajpreet Singh, Author: [@saihaj](https://github.com/saihaj)
+
+Bhajneet S.K., Maintainer: [@bhajneet](https://github.com/bhajneet/)
 
 ## Contributing
 
